@@ -12,6 +12,7 @@ class FirstOnboardingScreen extends StatefulWidget {
 }
 
 class _FirstOnboardingScreenState extends State<FirstOnboardingScreen> {
+  @override
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 2), () {

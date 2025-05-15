@@ -11,6 +11,7 @@ class SetNewPasswordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: whiteColor,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15.0),
         child: Column(
@@ -38,8 +39,13 @@ class SetNewPasswordScreen extends StatelessWidget {
               ),
             ),
             10.verticalSpace,
+
+            ///
+            ///       password
+            ///
             TextFormField(
               decoration: forgetAuthFieldDecoration.copyWith(
+                suffix: Icon(Icons.remove_red_eye, color: mediumGreyColor),
                 hintText: 'Enter your new password',
               ),
             ),
@@ -52,8 +58,10 @@ class SetNewPasswordScreen extends StatelessWidget {
               ),
             ),
             10.verticalSpace,
+            //      confirm password
             TextFormField(
               decoration: forgetAuthFieldDecoration.copyWith(
+                suffix: Icon(Icons.remove_red_eye, color: mediumGreyColor),
                 hintText: 'Re-enter password',
               ),
             ),

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lightweaver/core/constants/auth_text_feild.dart';
 import 'package:lightweaver/core/constants/colors.dart';
 import 'package:lightweaver/core/constants/text_style.dart';
 import 'package:lightweaver/custom_widget/button.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 
 class VerifyCodeScreen extends StatelessWidget {
   const VerifyCodeScreen({super.key});
@@ -11,6 +11,7 @@ class VerifyCodeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: whiteColor,
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 15),
         child: Column(
@@ -31,11 +32,36 @@ class VerifyCodeScreen extends StatelessWidget {
             ),
 
             20.verticalSpace,
-            TextFormField(
-              decoration: forgetAuthFieldDecoration.copyWith(
-                hintText: 'Enter Your Email',
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: PinCodeTextField(
+                appContext: context,
+                length: 6,
+                obscureText: false,
+                animationType: AnimationType.fade,
+                pinTheme: PinTheme(
+                  shape: PinCodeFieldShape.box,
+                  borderRadius: BorderRadius.circular(10),
+                  fieldHeight: 45,
+                  fieldWidth: 45,
+                  activeFillColor: whiteColor,
+                  selectedFillColor: whiteColor,
+                  inactiveFillColor: whiteColor,
+                  inactiveColor: pinFieldBorderColor,
+                  selectedColor: pinFieldBorderColor,
+                  activeColor: pinFieldBorderColor,
+                ),
+                animationDuration: const Duration(milliseconds: 300),
+                enableActiveFill: true,
+                onCompleted: (v) {
+                  print("Completed: $v");
+                },
+                onChanged: (value) {
+                  print(value);
+                },
               ),
             ),
+
             30.verticalSpace,
             CustomButton(text: 'Verify Code', onTap: () {}),
             20.verticalSpace,

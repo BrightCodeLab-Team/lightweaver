@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:get/get.dart';
 import 'package:lightweaver/core/constants/colors.dart';
-import 'package:lightweaver/ui/auth/forget_screens/forget_screen.dart';
-import 'package:lightweaver/ui/auth/forget_screens/set_new_password.dart';
-import 'package:lightweaver/ui/auth/forget_screens/verify_code.dart';
-import 'package:lightweaver/ui/auth/sign_in/sign_in_screen.dart';
 import 'package:lightweaver/ui/auth/sign_up/sign_up_screen.dart';
+import 'package:lightweaver/ui/onboarding_screen/splash_screen.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -28,7 +26,7 @@ class MyApp extends StatelessWidget {
       builder: (_, child) {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
-
+          defaultTransition: Transition.rightToLeft,
           theme: ThemeData(
             appBarTheme: AppBarTheme(
               backgroundColor: backGroundColor,
@@ -39,7 +37,7 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
             useMaterial3: true,
           ),
-          home: SetNewPasswordScreen(),
+          home: SplashScreen(),
         );
       },
     );

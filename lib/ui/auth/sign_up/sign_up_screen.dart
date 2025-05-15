@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/get_navigation.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:get/get.dart';
 import 'package:lightweaver/core/constants/app_assest.dart';
 import 'package:lightweaver/core/constants/auth_text_feild.dart';
 import 'package:lightweaver/core/constants/colors.dart';
@@ -19,200 +16,213 @@ class SignUpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final formkey = GlobalKey<FormState>();
     return ChangeNotifierProvider(
       create: (context) => SignUpViewModel(),
       child: Consumer<SignUpViewModel>(
         builder:
             (context, model, child) => Scaffold(
-              body: Column(
-                children: [
-                  Stack(
-                    clipBehavior: Clip.none,
-                    children: [
-                      Image.asset(AppAssets().signUp, scale: 4),
-                      Positioned(
-                        top: 80.h,
-                        left: 10.w,
-                        child: Text(
-                          'Welcome Back',
-                          style: style25B.copyWith(color: primaryColor),
-                        ),
-                      ),
-                      Positioned(
-                        top: 130.h,
-                        left: 10.w,
-                        child: Text(
-                          'Join the community og healers',
-                          style: style14.copyWith(color: whiteColor),
-                        ),
-                      ),
-                      Positioned(
-                        top: 180.h,
-                        child: Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 15.0,
-                            ),
-                            child: Container(
-                              height: 603.h,
-                              width: 1.sw * 0.9,
-                              decoration: BoxDecoration(
-                                color: whiteColor,
-                                borderRadius: BorderRadius.circular(29),
+              resizeToAvoidBottomInset:
+                  false, // Prevent resize when keyboard appears
+              body: Form(
+                key: formkey,
+                child: Stack(
+                  children: [
+                    Column(
+                      children: [
+                        Stack(
+                          clipBehavior: Clip.none,
+                          children: [
+                            Image.asset(AppAssets().signUp, scale: 4),
+                            Positioned(
+                              top: 80.h,
+                              left: 10.w,
+                              child: Text(
+                                'Welcome Back',
+                                style: style25B.copyWith(color: primaryColor),
                               ),
+                            ),
+                            Positioned(
+                              top: 130.h,
+                              left: 10.w,
+                              child: Text(
+                                'Join the community og healers',
+                                style: style14.copyWith(color: whiteColor),
+                              ),
+                            ),
+                            Positioned(
+                              top: 180.h,
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
-                                  horizontal: 10.0,
+                                  horizontal: 15.0,
                                 ),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    20.verticalSpace,
-                                    Text(
-                                      'Name',
-                                      style: style14.copyWith(
-                                        color: primaryColor,
+                                child: Container(
+                                  height: 603.h,
+                                  width: 1.sw * 0.9,
+                                  decoration: BoxDecoration(
+                                    color: whiteColor,
+                                    borderRadius: BorderRadius.circular(29),
+                                  ),
+                                  child: SingleChildScrollView(
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 10.0,
                                       ),
-                                    ),
-                                    10.verticalSpace,
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          20.verticalSpace,
+                                          Text(
+                                            'Name',
+                                            style: style14.copyWith(
+                                              color: primaryColor,
+                                            ),
+                                          ),
+                                          10.verticalSpace,
 
-                                    ///
-                                    ///     name
-                                    ///
-                                    TextFormField(
-                                      decoration: authFieldDecoration.copyWith(
-                                        hintText: 'Enter your name',
-                                      ),
-                                    ),
-                                    20.verticalSpace,
+                                          ///
+                                          ///    name
+                                          ///
+                                          TextFormField(
+                                            decoration: authFieldDecoration
+                                                .copyWith(
+                                                  hintText: 'Enter your name',
+                                                ),
+                                          ),
+                                          20.verticalSpace,
+                                          Text(
+                                            'Email',
+                                            style: style14.copyWith(
+                                              color: primaryColor,
+                                            ),
+                                          ),
+                                          10.verticalSpace,
 
-                                    Text(
-                                      'Email',
-                                      style: style14.copyWith(
-                                        color: primaryColor,
+                                          ///
+                                          ///      email
+                                          ///
+                                          TextFormField(
+                                            decoration: authFieldDecoration
+                                                .copyWith(
+                                                  hintText: 'Enter your Email',
+                                                ),
+                                            controller: model.emailController,
+                                          ),
+                                          20.verticalSpace,
+                                          Text(
+                                            'Password',
+                                            style: style14.copyWith(
+                                              color: primaryColor,
+                                            ),
+                                          ),
+                                          10.verticalSpace,
+                                          TextFormField(
+                                            decoration: authFieldDecoration
+                                                .copyWith(
+                                                  hintText:
+                                                      'Enter your password',
+                                                ),
+                                          ),
+                                          20.verticalSpace,
+                                          Text(
+                                            'Practitioner Type',
+                                            style: style14.copyWith(
+                                              color: primaryColor,
+                                            ),
+                                          ),
+                                          10.verticalSpace,
+                                          TextFormField(
+                                            readOnly: true,
+                                            decoration: authFieldDecoration.copyWith(
+                                              suffixIcon: Icon(
+                                                Icons
+                                                    .keyboard_arrow_down_rounded,
+                                                color: primaryColor,
+                                              ),
+                                              hintText:
+                                                  'Enter your practitioner type',
+                                              hintStyle: style16.copyWith(
+                                                color: Color(0xff454545),
+                                              ),
+                                            ),
+                                          ),
+                                          20.verticalSpace,
+                                          Text(
+                                            'Country',
+                                            style: style14.copyWith(
+                                              color: primaryColor,
+                                            ),
+                                          ),
+                                          10.verticalSpace,
+                                          TextFormField(
+                                            readOnly: true,
+                                            decoration: authFieldDecoration
+                                                .copyWith(
+                                                  suffixIcon: Icon(
+                                                    Icons
+                                                        .keyboard_arrow_down_rounded,
+                                                    color: primaryColor,
+                                                  ),
+                                                  hintText:
+                                                      'Select your country',
+                                                  hintStyle: style16.copyWith(
+                                                    color: blackColor,
+                                                  ),
+                                                ),
+                                          ),
+                                          20.verticalSpace,
+                                          CustomButton(
+                                            text: 'Create Account',
+                                            onTap:
+                                                () =>
+                                                    Get.to(() => HomeScreen()),
+                                          ),
+                                          20.verticalSpace,
+                                        ],
                                       ),
                                     ),
-                                    10.verticalSpace,
-
-                                    ///
-                                    ///     email
-                                    ///
-                                    TextFormField(
-                                      decoration: authFieldDecoration.copyWith(
-                                        hintText: 'Enter your Email',
-                                      ),
-                                    ),
-                                    20.verticalSpace,
-                                    Text(
-                                      'Password',
-                                      style: style14.copyWith(
-                                        color: primaryColor,
-                                      ),
-                                    ),
-                                    10.verticalSpace,
-
-                                    ///
-                                    ///     password
-                                    ///
-                                    TextFormField(
-                                      decoration: authFieldDecoration.copyWith(
-                                        hintText: 'Enter your password',
-                                      ),
-                                    ),
-                                    20.verticalSpace,
-                                    Text(
-                                      'Practitioner Type',
-                                      style: style14.copyWith(
-                                        color: primaryColor,
-                                      ),
-                                    ),
-                                    10.verticalSpace,
-
-                                    ///
-                                    ///     practitioner
-                                    ///
-                                    TextFormField(
-                                      readOnly: true,
-                                      decoration: authFieldDecoration.copyWith(
-                                        suffixIcon: Icon(
-                                          Icons.keyboard_arrow_down_rounded,
-                                          color: primaryColor,
-                                        ),
-                                        hintText:
-                                            'Enter your practitioner type',
-                                        hintStyle: style16.copyWith(
-                                          color: Color(0xff454545),
-                                        ),
-                                      ),
-                                    ),
-                                    20.verticalSpace,
-                                    Text(
-                                      'Country',
-                                      style: style14.copyWith(
-                                        color: primaryColor,
-                                      ),
-                                    ),
-                                    10.verticalSpace,
-
-                                    ///
-                                    ///     country
-                                    ///
-                                    TextFormField(
-                                      readOnly: true,
-                                      decoration: authFieldDecoration.copyWith(
-                                        suffixIcon: Icon(
-                                          Icons.keyboard_arrow_down_rounded,
-                                          color: primaryColor,
-                                        ),
-                                        hintText: 'Select your country',
-                                        hintStyle: style16.copyWith(
-                                          color: blackColor,
-                                        ),
-                                      ),
-                                    ),
-                                    20.verticalSpace,
-
-                                    ///
-                                    ///      create account button
-                                    ///
-                                    CustomButton(
-                                      text: 'Create Account',
-                                      onTap: () {
-                                        Get.to(HomeScreen());
-                                      },
-                                    ),
-                                  ],
+                                  ),
                                 ),
                               ),
                             ),
+                          ],
+                        ),
+                        const Spacer(),
+                        Padding(
+                          padding: EdgeInsets.only(bottom: 60.h),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Already have an account? ',
+                                style: style14.copyWith(color: darkGreyColor),
+                              ),
+                              GestureDetector(
+                                onTap: () => Get.to(() => SignInScreen()),
+                                child: Text(
+                                  'Sign In',
+                                  style: style14.copyWith(
+                                    color: primaryColor,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-
-                  Spacer(),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Already have an account?',
-                        style: style14.copyWith(color: darkGreyColor),
-                      ),
-                      5.horizontalSpace,
-                      Text(
-                        'SignIn',
-                        style: style14.copyWith(color: darkGreyColor),
-                      ),
-                    ],
-                  ),
-                  Align(
-                    alignment: Alignment.bottomLeft,
-                    child: Image.asset(AppAssets().onboardCornor, scale: 4),
-                  ),
-                ],
+                      ],
+                    ),
+                    Positioned(
+                      bottom: 0,
+                      left: 0,
+                      child: Image.asset(AppAssets().onboardCornor, scale: 4),
+                    ),
+                  ],
+                ),
               ),
             ),
       ),

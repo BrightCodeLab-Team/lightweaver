@@ -17,6 +17,7 @@ class ForgetScreen extends StatelessWidget {
       child: Consumer<ForgetViewModel>(
         builder:
             (context, model, child) => Scaffold(
+              backgroundColor: whiteColor,
               body: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15.0),
                 child: Column(

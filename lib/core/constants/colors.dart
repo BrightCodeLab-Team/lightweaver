@@ -11,6 +11,7 @@ const Color borderColor = Color(0xffE9EAEB);
 const Color lightGreyColor = Color(0xffABABAB);
 const Color mediumGreyColor = Color(0xff989898);
 const Color hintTextColor = Color(0xffB3B3B3);
+const Color pinFieldBorderColor = Color(0xffE1E1E1);
 //*******************************************************************//
 //const Color borderColor = Color(0xffD8D8D8);
 
@@ -41,7 +42,7 @@ const Color pinkColor2 = Color(0xffFF3660);
 const Color lightOrangeColor = Color(0xffFF876E);
 
 const Color custardColor = Color(0xfff9EB94533 % 20);
-const Color custardColor2 = Color(0xfff5B7083);
+const Color custardColor2 = Color(0xfff5b7083);
 const Color custardColor3 = Color(0xfffdd854);
 const Color peachColor = Color(0xfffeaeaea);
 const Color redColor = Color(0xfff000000 % 40);
