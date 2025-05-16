@@ -168,19 +168,17 @@ class SignInScreen extends StatelessWidget {
                                     ///     or text both sided line
                                     Row(
                                       mainAxisAlignment:
-                                          MainAxisAlignment
-                                              .center, // Center the content
+                                          MainAxisAlignment.center,
                                       children: [
                                         Container(
-                                          width:
-                                              155, // Set the width of the line
+                                          width: 155,
                                           height: 1.0,
-                                          color: Colors.grey, // Line color
+                                          color: Colors.grey,
                                         ),
                                         Padding(
                                           padding: const EdgeInsets.symmetric(
                                             horizontal: 8.0,
-                                          ), // Space around the text
+                                          ),
                                           child: Text(
                                             'OR',
                                             style: GoogleFonts.poppins(
@@ -190,10 +188,9 @@ class SignInScreen extends StatelessWidget {
                                           ),
                                         ),
                                         Container(
-                                          width:
-                                              150, // Set the width of the line
+                                          width: 150,
                                           height: 1.0,
-                                          color: Colors.grey, // Line color
+                                          color: Colors.grey,
                                         ),
                                       ],
                                     ),

@@ -7,12 +7,12 @@ class SignUpViewModel extends BaseViewModel {
   );
 
   //      validate email
-  TextEditingController emailController = TextEditingController();
-  String? validateEmail(String? value) {
-    if (value.toString().isEmpty) {
-      return 'please enter a valid email';
-    } else {
-      return null;
-    }
-  }
+  // TextEditingController emailController = TextEditingController();
+  // String? validateEmail(String? value) {
+  //   if (value.toString().isEmpty) {
+  //     return 'please enter a valid email';
+  //   } else {
+  //     return null;
+  //   }
+  // }
 }

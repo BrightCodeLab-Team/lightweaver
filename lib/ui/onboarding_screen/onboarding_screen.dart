@@ -12,6 +12,10 @@ class OnboardingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<int> prices = [8, 4, 3, 2, 6];
+    for (int i = 0; i <= prices.length; i++) {
+      print(prices[i]);
+    }
     return ChangeNotifierProvider(
       create: (context) => OnboardingViewModel(),
       child: Consumer<OnboardingViewModel>(
