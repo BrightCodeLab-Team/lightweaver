@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/get_core.dart';
 import 'package:lightweaver/core/constants/auth_text_feild.dart';
 import 'package:lightweaver/core/constants/colors.dart';
 import 'package:lightweaver/core/constants/text_style.dart';
 import 'package:lightweaver/custom_widget/button.dart';
 import 'package:lightweaver/ui/auth/forget_screens/forget_view_model.dart';
+import 'package:lightweaver/ui/auth/forget_screens/verify_code.dart';
 import 'package:provider/provider.dart';
 
 class ForgetScreen extends StatelessWidget {
@@ -54,7 +57,12 @@ class ForgetScreen extends StatelessWidget {
                       ),
                     ),
                     30.verticalSpace,
-                    CustomButton(text: 'Reset Password', onTap: () {}),
+                    CustomButton(
+                      text: 'Reset Password',
+                      onTap: () {
+                        Get.to(VerifyCodeScreen());
+                      },
+                    ),
                   ],
                 ),
               ),

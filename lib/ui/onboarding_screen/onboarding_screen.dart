@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/get_core.dart';
 import 'package:lightweaver/core/constants/app_assest.dart';
 import 'package:lightweaver/core/constants/colors.dart';
 import 'package:lightweaver/core/constants/text_style.dart';
+import 'package:lightweaver/ui/auth/sign_in/sign_in_screen.dart';
 import 'package:lightweaver/ui/onboarding_screen/onboarding_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -12,10 +15,6 @@ class OnboardingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<int> prices = [8, 4, 3, 2, 6];
-    for (int i = 0; i <= prices.length; i++) {
-      print(prices[i]);
-    }
     return ChangeNotifierProvider(
       create: (context) => OnboardingViewModel(),
       child: Consumer<OnboardingViewModel>(
@@ -133,7 +132,11 @@ class OnboardingScreen extends StatelessWidget {
                           if (model.currentPage != model.items.length - 1)
                             const Spacer(),
                           ElevatedButton(
-                            onPressed: model.nextPage,
+                            onPressed: () {
+                              model.currentPage == model.items.length - 1
+                                  ? Get.to(SignInScreen())
+                                  : model.nextPage();
+                            },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: primaryColor,
                               foregroundColor: Colors.white,
@@ -154,10 +157,10 @@ class OnboardingScreen extends StatelessWidget {
                       ),
                     ),
                     Spacer(),
-                    Align(
-                      alignment: Alignment.bottomLeft,
-                      child: Image.asset(AppAssets().onboardCornor, scale: 4),
-                    ),
+                    // Align(
+                    //   alignment: Alignment.bottomLeft,
+                    //   child: Image.asset(AppAssets().onboardCornor, scale: 4),
+                    // ),
                   ],
                 ),
               ),

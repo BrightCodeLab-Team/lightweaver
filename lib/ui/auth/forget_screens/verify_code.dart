@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/route_manager.dart';
 import 'package:lightweaver/core/constants/colors.dart';
 import 'package:lightweaver/core/constants/text_style.dart';
 import 'package:lightweaver/custom_widget/button.dart';
+import 'package:lightweaver/ui/auth/forget_screens/password_reset.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class VerifyCodeScreen extends StatelessWidget {
@@ -63,7 +65,12 @@ class VerifyCodeScreen extends StatelessWidget {
             ),
 
             30.verticalSpace,
-            CustomButton(text: 'Verify Code', onTap: () {}),
+            CustomButton(
+              text: 'Verify Code',
+              onTap: () {
+                Get.to(PasswordResetScreen());
+              },
+            ),
             20.verticalSpace,
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

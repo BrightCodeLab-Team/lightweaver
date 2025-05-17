@@ -46,6 +46,7 @@ dependencies:
   intl: ^0.20.2
   smooth_page_indicator:
   pin_code_fields:
+  country_picker:
 
 dev_dependencies:
   flutter_test:
