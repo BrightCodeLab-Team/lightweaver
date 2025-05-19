@@ -58,6 +58,24 @@ class AppAssets {
   //                                      //
   //************************************ *//
   ///
+  String clientScreen = "$staticAssets/client.png";
+  String formulaBuilderScreen = "$staticAssets/formulaBuilder.png";
+  String formulaHistoryScreen = "$staticAssets/formulaHistory.png";
+  String notificationScreen = "$staticAssets/notification.png";
+  String remedyDetailsScreen = "$staticAssets/remedyDetails.png";
+  String remedyLibScreen = "$staticAssets/remedyLib.png";
+  String settingScreen = "$staticAssets/setting.png";
+  String setting2Screen = "$staticAssets/setting2.png";
+  String setting3Screen = "$staticAssets/setting3.png";
+  String setting4Screen = "$staticAssets/setting4.png";
+  String setting5Screen = "$staticAssets/setting5.png";
+  String setting6Screen = "$staticAssets/setting6.png";
+  String setting77Screen = "$staticAssets/setting7.png";
+  String welcomeScreen = "$staticAssets/welcome.png";
+  String bookIcon = "$iconsAssets/bookIcon.png";
+  String formulaIcon = "$iconsAssets/formulaIcon.png";
+  String newClient = "$iconsAssets/newClient.png";
+  String notificationIcon = "$iconsAssets/notificationIcon.png";
 
   ///
 

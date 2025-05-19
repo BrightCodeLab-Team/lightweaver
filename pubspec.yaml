@@ -47,6 +47,8 @@ dependencies:
   smooth_page_indicator:
   pin_code_fields:
   country_picker:
+  animated_bottom_navigation_bar: ^1.4.0
+  stylish_bottom_bar: ^1.1.1
 
 dev_dependencies:
   flutter_test:
