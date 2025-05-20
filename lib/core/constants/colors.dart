@@ -9,9 +9,11 @@ const Color darkPurpleColor = Color(0xff922EFF);
 const Color darkGreyColor = Color(0xff4B5563);
 const Color borderColor = Color(0xffE9EAEB);
 const Color lightGreyColor = Color(0xffABABAB);
+const Color lightGreyColor2 = Color(0xff6B7280);
 const Color mediumGreyColor = Color(0xff989898);
 const Color hintTextColor = Color(0xffB3B3B3);
 const Color pinFieldBorderColor = Color(0xffE1E1E1);
+
 //*******************************************************************//
 //const Color borderColor = Color(0xffD8D8D8);
 

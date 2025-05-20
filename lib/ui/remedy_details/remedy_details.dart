@@ -5,18 +5,20 @@ import 'package:lightweaver/core/constants/app_assest.dart';
 import 'package:lightweaver/core/constants/auth_text_feild.dart';
 import 'package:lightweaver/core/constants/colors.dart';
 import 'package:lightweaver/core/constants/text_style.dart';
+import 'package:lightweaver/custom_widget/remedy_details.dart';
 import 'package:lightweaver/ui/home/home_view_model.dart';
 import 'package:lightweaver/ui/notifications/notification_screen.dart';
+import 'package:lightweaver/ui/remedy_details/remedy_details_view_model.dart';
 import 'package:provider/provider.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class RemedyDetailsScreen extends StatelessWidget {
+  const RemedyDetailsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => HomeViewModel(),
-      child: Consumer<HomeViewModel>(
+      create: (context) => RemedyDetailsViewModel(),
+      child: Consumer<RemedyDetailsViewModel>(
         builder:
             (context, model, child) => Scaffold(
               body: SingleChildScrollView(
@@ -25,7 +27,7 @@ class HomeScreen extends StatelessWidget {
                     Stack(
                       clipBehavior: Clip.none,
                       children: [
-                        Image.asset(AppAssets().welcomeScreen, scale: 4),
+                        Image.asset(AppAssets().remedyDetailsScreen, scale: 4),
                         Positioned(
                           right: 10,
                           top: 30,
@@ -40,24 +42,23 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ),
                         Positioned(
-                          top: 200.h,
+                          top: 190.h,
                           left: 10.w,
                           child: Text(
-                            'Welcome, Shayan',
+                            'Remedy Details',
                             style: style25B.copyWith(color: primaryColor),
                           ),
                         ),
 
                         Positioned(
                           bottom: 0,
-                          top: 200,
+                          top: 190,
                           right: 15.w, // Added right position
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Container(
                                 height: 50.h,
-                                width: 1.sw * 0.6,
+                                width: 1.sw * 0.92,
                                 decoration: BoxDecoration(
                                   color: transparentColor,
                                   borderRadius: BorderRadius.only(
@@ -97,30 +98,40 @@ class HomeScreen extends StatelessWidget {
                               ///
                               ///      add new formula
                               ///
-                              Container(
-                                height: 50,
-
-                                decoration: BoxDecoration(
-                                  color: whiteColor,
-                                  borderRadius: BorderRadius.circular(70.r),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 8),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Icon(Icons.add, color: blackColor),
-                                      Text('New Formula', style: style14B),
-                                    ],
+                            ],
+                          ),
+                        ),
+                        Positioned(
+                          top:
+                              290.h, // Adjust this value to appear right under the search bar
+                          left: 0,
+                          right: 0,
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 15.w),
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Row(
+                                children: List.generate(
+                                  model.quickLinkTitles.length,
+                                  (index) => Padding(
+                                    padding: EdgeInsets.only(right: 10.w),
+                                    child: _CustomTabs(
+                                      index: index,
+                                      model: model,
+                                      title: model.quickLinkTitles[index],
+                                      onTap: () {
+                                        // Your logic for tap
+                                      },
+                                    ),
                                   ),
                                 ),
                               ),
-                            ],
+                            ),
                           ),
                         ),
                       ],
                     ),
+                    30.verticalSpace,
                     _secondSection(model),
                   ],
                 ),
@@ -133,66 +144,48 @@ class HomeScreen extends StatelessWidget {
   ///
   ///
   ///
-  _secondSection(HomeViewModel model) {
+  _secondSection(RemedyDetailsViewModel model) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15.0),
       child: Container(
         width: double.infinity,
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 15),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                20.verticalSpace,
-                Text('Quick Links', style: style18B),
-                20.verticalSpace,
-                _CustomQuickLInksItem(
-                  onTap: () {
-                    // Get.to(SignInScreen());
-                  },
-                  index: 0,
-                  model: model,
-                  imageUrl: AppAssets().bookIcon,
-                  title: 'Explore Library',
-                ),
-
-                20.verticalSpace,
-                _CustomQuickLInksItem(
-                  onTap: () {
-                    // Get.to(SignInScreen());
-                  },
-                  index: 1,
-                  model: model,
-                  imageUrl: AppAssets().formulaIcon,
-                  title: 'start Library',
-                ),
-
-                20.verticalSpace,
-                _CustomQuickLInksItem(
-                  onTap: () {
-                    // Get.to(SignInScreen());
-                  },
-                  index: 2,
-                  model: model,
-                  imageUrl: AppAssets().newClient,
-                  title: 'Add New Client',
-                ),
-
-                20.verticalSpace,
-                _CustomQuickLInksItem(
-                  onTap: () {
-                    // Get.to(SignInScreen());
-                  },
-                  index: 3,
-                  model: model,
-                  imageUrl: AppAssets().notificationIcon,
-                  title: 'Recent Notification',
-                ),
-
-                20.verticalSpace,
-              ],
-            ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              10.verticalSpace,
+              model.selectedTabIndex == 0
+                  ? GridView.builder(
+                    itemCount: model.remedyList.length,
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(), // Important!
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 1,
+                          crossAxisSpacing: 10,
+                          mainAxisSpacing: 10,
+                          childAspectRatio: 2,
+                        ),
+                    itemBuilder: (BuildContext context, int index) {
+                      return CustomRemedyDetailsCardWidget(
+                        remedy: model.remedyList[index],
+                        isSelected: model.selectedCardIndex == index,
+                        onTap: () => model.selectCard(index),
+                      );
+                    },
+                  )
+                  : model.selectedTabIndex == 1
+                  ? Text('category')
+                  : model.selectedTabIndex == 2
+                  ? Text('property')
+                  : model.selectedTabIndex == 3
+                  ? Text('vibration')
+                  : model.selectedTabIndex == 4
+                  ? Text('use')
+                  : Text('all'),
+              50.verticalSpace,
+            ],
           ),
         ),
       ),
@@ -203,10 +196,10 @@ class HomeScreen extends StatelessWidget {
 ///
 ///      custom quick link item
 ///
-Widget _CustomQuickLInksItem({
+Widget _CustomTabs({
   required int index,
-  required HomeViewModel model,
-  required String imageUrl,
+  required RemedyDetailsViewModel model,
+
   required String title,
   required final VoidCallback onTap,
 }) {
@@ -216,6 +209,7 @@ Widget _CustomQuickLInksItem({
     onTap: () {
       onTap();
       model.selectQuickLink(index);
+      model.selectTabFunction(index);
     },
     child: Container(
       decoration: BoxDecoration(
@@ -224,21 +218,13 @@ Widget _CustomQuickLInksItem({
       ),
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 25, vertical: 15),
-        child: Row(
-          children: [
-            Image.asset(
-              imageUrl,
-              color: isSelected ? whiteColor : primaryColor,
-              scale: 4,
+        child: Center(
+          child: Text(
+            title,
+            style: style14.copyWith(
+              color: isSelected ? whiteColor : blackColor,
             ),
-            20.horizontalSpace,
-            Text(
-              title,
-              style: style14.copyWith(
-                color: isSelected ? whiteColor : primaryColor,
-              ),
-            ),
-          ],
+          ),
         ),
       ),
     ),

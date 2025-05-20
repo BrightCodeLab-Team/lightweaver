@@ -17,6 +17,12 @@ TextStyle style16 = TextStyle(
   fontWeight: FontWeight.w400,
   fontFamily: GoogleFonts.inter().fontFamily,
 );
+TextStyle style12 = TextStyle(
+  fontSize: 12.sp,
+  color: blackColor,
+  fontWeight: FontWeight.w400,
+  fontFamily: GoogleFonts.inter().fontFamily,
+);
 TextStyle style14 = TextStyle(
   fontSize: 14.sp,
   color: blackColor,

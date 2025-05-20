@@ -76,6 +76,7 @@ class AppAssets {
   String formulaIcon = "$iconsAssets/formulaIcon.png";
   String newClient = "$iconsAssets/newClient.png";
   String notificationIcon = "$iconsAssets/notificationIcon.png";
+  String profile = "$dynamicAssets/profile.png";
 
   ///
 
@@ -111,5 +112,4 @@ class AppAssets {
   String myClient = "$iconsAssets/my_client.png";
   String myFormula = "$iconsAssets/my_formula.png";
   String notification = "$iconsAssets/notification.png";
-  String profile = "$iconsAssets/profile.png";
 }
