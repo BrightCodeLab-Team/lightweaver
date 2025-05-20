@@ -95,6 +95,6 @@ TextStyle style14B = TextStyle(
 TextStyle style18B = TextStyle(
   fontSize: 18.sp,
   color: blackColor,
-  fontWeight: FontWeight.w500,
+  fontWeight: FontWeight.bold,
   fontFamily: GoogleFonts.inter().fontFamily,
 );

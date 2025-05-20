@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lightweaver/core/constants/colors.dart';
 import 'package:lightweaver/ui/home/home_screen.dart';
+import 'package:lightweaver/ui/root_screen/root_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -42,7 +43,7 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
             useMaterial3: true,
           ),
-          home: HomeScreen(),
+          home: RootScreen(),
         );
       },
     );

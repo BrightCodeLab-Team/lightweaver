@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/utils.dart';
 import 'package:lightweaver/core/constants/app_assest.dart';
 import 'package:lightweaver/core/constants/auth_text_feild.dart';
 import 'package:lightweaver/core/constants/colors.dart';
@@ -24,101 +23,105 @@ class HomeScreen extends StatelessWidget {
               body: SingleChildScrollView(
                 child: Column(
                   children: [
-                    // Stack(
-                    //   clipBehavior: Clip.none,
-                    //   children: [
-                    //     Image.asset(AppAssets().welcomeScreen, scale: 4),
-                    //     Positioned(
-                    //       right: 10,
-                    //       top: 30,
-                    //       child: GestureDetector(
-                    //         onTap: () {
-                    //           Get.to(NotificationScreen());
-                    //         },
-                    //         child: Image.asset(
-                    //           AppAssets().notificationIcon,
-                    //           scale: 4,
-                    //         ),
-                    //       ),
-                    //     ),
-                    //     Positioned(
-                    //       top: 200.h,
-                    //       left: 10.w,
-                    //       child: Text(
-                    //         'Welcome, Shayan',
-                    //         style: style25B.copyWith(color: primaryColor),
-                    //       ),
-                    //     ),
+                    Stack(
+                      clipBehavior: Clip.none,
+                      children: [
+                        Image.asset(AppAssets().welcomeScreen, scale: 4),
+                        Positioned(
+                          right: 10,
+                          top: 30,
+                          child: GestureDetector(
+                            onTap: () {
+                              Get.to(NotificationScreen());
+                            },
+                            child: Image.asset(
+                              AppAssets().notificationIcon,
+                              scale: 4,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          top: 200.h,
+                          left: 10.w,
+                          child: Text(
+                            'Welcome, Shayan',
+                            style: style25B.copyWith(color: primaryColor),
+                          ),
+                        ),
 
-                    //     Positioned(
-                    //       bottom: 0,
-                    //       top: 200,
-                    //       right: 15.w, // Added right position
-                    //       child: Row(
-                    //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //         children: [
-                    //           Container(
-                    //             height: 50.h,
-                    //             width: 1.sw * 0.6,
-                    //             decoration: BoxDecoration(
-                    //               color: transparentColor,
-                    //               borderRadius: BorderRadius.only(
-                    //                 topLeft: Radius.circular(29),
-                    //                 topRight: Radius.circular(29),
-                    //               ),
-                    //             ),
-                    //             child: Padding(
-                    //               padding: const EdgeInsets.symmetric(
-                    //                 horizontal: 10.0,
-                    //               ),
-                    //               child: Column(
-                    //                 mainAxisAlignment: MainAxisAlignment.start,
-                    //                 crossAxisAlignment:
-                    //                     CrossAxisAlignment.start,
-                    //                 children: [
-                    //                   TextFormField(
-                    //                     decoration: authFieldDecoration
-                    //                         .copyWith(
-                    //                           hintText: 'Search',
-                    //                           suffixIcon: Icon(
-                    //                             Icons.search,
-                    //                             color: blackColor,
-                    //                             size: 20,
-                    //                           ),
-                    //                         ),
-                    //                   ),
-                    //                 ],
-                    //               ),
-                    //             ),
-                    //           ),
+                        Positioned(
+                          bottom: 0,
+                          top: 200,
+                          right: 15.w, // Added right position
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                height: 50.h,
+                                width: 1.sw * 0.6,
+                                decoration: BoxDecoration(
+                                  color: transparentColor,
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(29),
+                                    topRight: Radius.circular(29),
+                                  ),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 10.0,
+                                  ),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      TextFormField(
+                                        decoration: authFieldDecoration
+                                            .copyWith(
+                                              contentPadding:
+                                                  EdgeInsets.symmetric(
+                                                    horizontal: 20,
+                                                  ),
+                                              hintText: 'Search',
+                                              suffixIcon: Icon(
+                                                Icons.search,
+                                                color: blackColor,
+                                                size: 20,
+                                              ),
+                                            ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
 
-                    //           ///
-                    //           ///      add new formula
-                    //           ///
-                    //           Container(
-                    //             height: 50,
+                              ///
+                              ///      add new formula
+                              ///
+                              Container(
+                                height: 50,
 
-                    //             decoration: BoxDecoration(
-                    //               color: whiteColor,
-                    //               borderRadius: BorderRadius.circular(70.r),
-                    //             ),
-                    //             child: Padding(
-                    //               padding: EdgeInsets.symmetric(horizontal: 8),
-                    //               child: Row(
-                    //                 mainAxisAlignment:
-                    //                     MainAxisAlignment.spaceEvenly,
-                    //                 children: [
-                    //                   Icon(Icons.add, color: blackColor),
-                    //                   Text('New Formula', style: style14),
-                    //                 ],
-                    //               ),
-                    //             ),
-                    //           ),
-                    //         ],
-                    //       ),
-                    //     ),
-                    //   ],
-                    // ),
+                                decoration: BoxDecoration(
+                                  color: whiteColor,
+                                  borderRadius: BorderRadius.circular(70.r),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 8),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Icon(Icons.add, color: blackColor),
+                                      Text('New Formula', style: style14B),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                     _secondSection(model),
                   ],
                 ),
@@ -142,11 +145,12 @@ class HomeScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                20.verticalSpace,
                 Text('Quick Links', style: style18B),
-                30.verticalSpace,
+                20.verticalSpace,
                 _CustomQuickLInksItem(
                   onTap: () {
-                    Get.to(SignInScreen());
+                    // Get.to(SignInScreen());
                   },
                   index: 0,
                   model: model,
@@ -157,7 +161,7 @@ class HomeScreen extends StatelessWidget {
                 20.verticalSpace,
                 _CustomQuickLInksItem(
                   onTap: () {
-                    Get.to(SignInScreen());
+                    // Get.to(SignInScreen());
                   },
                   index: 1,
                   model: model,
@@ -168,7 +172,7 @@ class HomeScreen extends StatelessWidget {
                 20.verticalSpace,
                 _CustomQuickLInksItem(
                   onTap: () {
-                    Get.to(SignInScreen());
+                    // Get.to(SignInScreen());
                   },
                   index: 2,
                   model: model,
@@ -179,7 +183,7 @@ class HomeScreen extends StatelessWidget {
                 20.verticalSpace,
                 _CustomQuickLInksItem(
                   onTap: () {
-                    Get.to(SignInScreen());
+                    // Get.to(SignInScreen());
                   },
                   index: 3,
                   model: model,

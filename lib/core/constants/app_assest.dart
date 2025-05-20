@@ -107,4 +107,9 @@ class AppAssets {
   //                                      //
   //************************************ *//
   //
+  String dashbored = "$iconsAssets/dashbored.png";
+  String myClient = "$iconsAssets/my_client.png";
+  String myFormula = "$iconsAssets/my_formula.png";
+  String notification = "$iconsAssets/notification.png";
+  String profile = "$iconsAssets/profile.png";
 }

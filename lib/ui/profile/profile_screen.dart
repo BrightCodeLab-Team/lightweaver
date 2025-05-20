@@ -12,7 +12,7 @@ class ProfileScreen extends StatelessWidget {
       child: Consumer<ProfileViewModel>(
         builder:
             (context, model, child) =>
-                Scaffold(body: Center(child: Text('my formulas'))),
+                Scaffold(body: Center(child: Text('Profile Screens'))),
       ),
     );
   }
