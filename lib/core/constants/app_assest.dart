@@ -77,6 +77,7 @@ class AppAssets {
   String newClient = "$iconsAssets/newClient.png";
   String notificationIcon = "$iconsAssets/notificationIcon.png";
   String profile = "$dynamicAssets/profile.png";
+  String remedy2 = "$staticAssets/remedy2.png";
 
   ///
 
