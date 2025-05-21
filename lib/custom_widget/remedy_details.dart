@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/utils.dart';
 import 'package:lightweaver/core/constants/app_assest.dart';
 import 'package:lightweaver/core/constants/colors.dart';
 import 'package:lightweaver/core/constants/text_style.dart';
 import 'package:lightweaver/core/model/remedy_details.dart';
+import 'package:lightweaver/ui/remedy_details/remedy_formula_detail/remedy_formula_detail_screen.dart';
 
 class CustomRemedyDetailsCardWidget extends StatelessWidget {
   final RemedyModel remedy;
@@ -20,7 +23,10 @@ class CustomRemedyDetailsCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: () {
+        onTap;
+        Get.to(RemedyFormulaDetailScreen());
+      },
       child: Container(
         width: double.infinity,
         margin: EdgeInsets.only(bottom: 16),
