@@ -86,6 +86,21 @@ class AppAssets {
   //                                      //
   //************************************ *//
   //
+  String profileIcons = "$iconsAssets/profileIcons.png";
+  String profileIcons1 = "$iconsAssets/profileIcons1.png";
+  String reminder = "$iconsAssets/reminder.png";
+  String reminder1 = "$iconsAssets/reminder1.png";
+  String email = "$iconsAssets/email.png";
+  String email1 = "$iconsAssets/email1.png";
+  String cloud = "$iconsAssets/cloud.png";
+  String cloud1 = "$iconsAssets/cloud1.png";
+
+  String help = "$iconsAssets/help.png";
+  String help1 = "$iconsAssets/help1.png";
+  String appearance = "$iconsAssets/appearance.png";
+  String appearance1 = "$iconsAssets/appearance1.png";
+  String export = "$iconsAssets/export.png";
+  String export1 = "$iconsAssets/export1.png";
 
   ///
   //************************************ *//
@@ -112,4 +127,6 @@ class AppAssets {
   String myClient = "$iconsAssets/my_client.png";
   String myFormula = "$iconsAssets/my_formula.png";
   String notification = "$iconsAssets/notification.png";
+  String setting = "$iconsAssets/setting.png";
+  String profileIcon = "$iconsAssets/profilee.png";
 }

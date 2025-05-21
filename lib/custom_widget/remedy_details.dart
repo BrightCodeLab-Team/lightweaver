@@ -98,16 +98,13 @@ class CustomRemedyDetailsCardWidget extends StatelessWidget {
                       ),
                     ],
                   ),
-                  15.verticalSpace,
-                  GestureDetector(
-                    onTap: () {
-                      print('rout to detail screen');
-                    },
+
+                  TextButton(
+                    onPressed: () {},
                     child: Text(
                       'View details',
-                      style: style16.copyWith(
+                      style: style14B.copyWith(
                         color: isSelected ? whiteColor : primaryColor,
-                        fontWeight: FontWeight.w700,
                       ),
                     ),
                   ),

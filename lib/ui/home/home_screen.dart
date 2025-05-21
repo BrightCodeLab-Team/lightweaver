@@ -9,7 +9,8 @@ import 'package:lightweaver/core/constants/colors.dart';
 import 'package:lightweaver/core/constants/text_style.dart';
 import 'package:lightweaver/ui/home/home_view_model.dart';
 import 'package:lightweaver/ui/notifications/notification_screen.dart';
-import 'package:lightweaver/ui/remedy_details/remedy_details.dart';
+import 'package:lightweaver/ui/remedy_details/remedy_details_screen.dart';
+import 'package:lightweaver/ui/root_screen/root_screen.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -162,29 +163,29 @@ class HomeScreen extends StatelessWidget {
                 20.verticalSpace,
                 _CustomQuickLInksItem(
                   onTap: () {
-                    // Get.to(SignInScreen());
+                    Get.offAll(RootScreen(selectedScreen: 2));
                   },
                   index: 1,
                   model: model,
                   imageUrl: AppAssets().formulaIcon,
-                  title: 'start Library',
+                  title: 'Start Library',
                 ),
 
                 20.verticalSpace,
                 _CustomQuickLInksItem(
                   onTap: () {
-                    // Get.to(SignInScreen());
+                    Get.offAll(RootScreen(selectedScreen: 1));
                   },
                   index: 2,
                   model: model,
                   imageUrl: AppAssets().newClient,
-                  title: 'Add New Client',
+                  title: 'My Client',
                 ),
 
                 20.verticalSpace,
                 _CustomQuickLInksItem(
                   onTap: () {
-                    // Get.to(SignInScreen());
+                    Get.offAll(RootScreen(selectedScreen: 3));
                   },
                   index: 3,
                   model: model,
