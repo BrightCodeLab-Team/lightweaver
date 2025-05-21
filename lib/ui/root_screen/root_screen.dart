@@ -1,6 +1,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:lightweaver/core/constants/app_assest.dart';
+import 'package:lightweaver/core/constants/colors.dart';
 import 'package:lightweaver/ui/root_screen/root_view_model.dart';
 
 import 'package:provider/provider.dart';
@@ -19,7 +20,7 @@ class RootScreen extends StatelessWidget {
         builder:
             (context, model, child) => Scaffold(
               key: _scaffoldKey,
-              backgroundColor: Colors.white,
+              backgroundColor: whiteColor,
 
               ///
               /// Start Body
@@ -30,8 +31,8 @@ class RootScreen extends StatelessWidget {
               /// BottomBar
               ///
               bottomNavigationBar: CurvedNavigationBar(
-                backgroundColor: Colors.white,
-                color: Color(0xffEEA800),
+                backgroundColor: whiteColor,
+                color: primaryColor,
                 maxWidth: double.infinity,
                 index: model.currentIndex,
                 items: <Widget>[

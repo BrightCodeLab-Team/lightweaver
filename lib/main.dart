@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lightweaver/core/constants/colors.dart';
 import 'package:lightweaver/ui/onboarding_screen/splash_screen.dart';
-import 'package:lightweaver/ui/root_screen/root_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

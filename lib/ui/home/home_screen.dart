@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -40,9 +42,8 @@ class HomeScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        Positioned(
-                          top: 200.h,
-                          left: 10.w,
+                        Positioned.fill(
+                          top: 170,
                           child: Text(
                             'Welcome, Shayan',
                             style: style25B.copyWith(color: primaryColor),
@@ -222,6 +223,14 @@ Widget _CustomQuickLInksItem({
       decoration: BoxDecoration(
         color: isSelected ? primaryColor : whiteColor,
         borderRadius: BorderRadius.circular(100),
+        boxShadow: [
+          BoxShadow(
+            offset: Offset(5.02, 4.02),
+            color: Color(0XFFA1A1A1).withOpacity(0.25),
+            blurRadius: 8.04,
+            spreadRadius: 0,
+          ),
+        ],
       ),
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 25, vertical: 15),

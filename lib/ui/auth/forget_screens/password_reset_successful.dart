@@ -5,7 +5,7 @@ import 'package:lightweaver/core/constants/app_assest.dart';
 import 'package:lightweaver/core/constants/colors.dart';
 import 'package:lightweaver/core/constants/text_style.dart';
 import 'package:lightweaver/custom_widget/button.dart';
-import 'package:lightweaver/ui/auth/forget_screens/forget_screen.dart';
+import 'package:lightweaver/ui/auth/sign_in/sign_in_screen.dart';
 
 class PasswordResetSuccessfulScreen extends StatelessWidget {
   const PasswordResetSuccessfulScreen({super.key});
@@ -33,7 +33,7 @@ class PasswordResetSuccessfulScreen extends StatelessWidget {
               child: CustomButton(
                 text: 'Update Password',
                 onTap: () {
-                  Get.to(ForgetScreen());
+                  Get.offAll(SignInScreen());
                   print('button got pressed');
                 },
               ),
