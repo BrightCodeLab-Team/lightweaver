@@ -24,10 +24,9 @@ class RemedyDetailsScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     Stack(
-                      alignment: Alignment.bottomCenter,
                       clipBehavior: Clip.none,
                       children: [
-                        Image.asset(AppAssets().remedyDetailsScreen),
+                        Image.asset(AppAssets().remedyDetailsScreen, scale: 4),
                         Positioned(
                           right: 10,
                           top: 30,
@@ -42,7 +41,7 @@ class RemedyDetailsScreen extends StatelessWidget {
                           ),
                         ),
                         Positioned.fill(
-                          top: 100.h,
+                          top: 160.h,
                           left: 10.w,
                           child: Text(
                             'Remedy Details',
@@ -52,13 +51,13 @@ class RemedyDetailsScreen extends StatelessWidget {
 
                         Positioned(
                           bottom: 0,
-                          top: 80,
+                          top: 190,
                           right: 15.w, // Added right position
                           child: Row(
                             children: [
                               Container(
                                 height: 50.h,
-                                width: double.infinity,
+                                width: 1.sw * 0.92,
                                 decoration: BoxDecoration(
                                   color: transparentColor,
                                   borderRadius: BorderRadius.only(
@@ -66,24 +65,32 @@ class RemedyDetailsScreen extends StatelessWidget {
                                     topRight: Radius.circular(29),
                                   ),
                                 ),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    TextFormField(
-                                      decoration: authFieldDecoration.copyWith(
-                                        contentPadding: EdgeInsets.symmetric(
-                                          horizontal: 20,
-                                        ),
-                                        hintText: 'Search',
-                                        suffixIcon: Icon(
-                                          Icons.search,
-                                          color: blackColor,
-                                          size: 20,
-                                        ),
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 10.0,
+                                  ),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      TextFormField(
+                                        decoration: authFieldDecoration
+                                            .copyWith(
+                                              contentPadding:
+                                                  EdgeInsets.symmetric(
+                                                    horizontal: 20,
+                                                  ),
+                                              hintText: 'Search',
+                                              suffixIcon: Icon(
+                                                Icons.search,
+                                                color: blackColor,
+                                                size: 20,
+                                              ),
+                                            ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
 
@@ -94,46 +101,36 @@ class RemedyDetailsScreen extends StatelessWidget {
                           ),
                         ),
                         Positioned(
-                          bottom:
-                              -5, // Adjust this value to appear right under the search bar
+                          top:
+                              290.h, // Adjust this value to appear right under the search bar
                           left: 0,
                           right: 0,
-                          child: SizedBox(
-                            height: 50,
-                            child: ListView.builder(
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 15.w),
+                            child: SingleChildScrollView(
                               scrollDirection: Axis.horizontal,
-                              shrinkWrap: true,
-                              itemCount: model.quickLinkTitles.length,
-                              itemBuilder: (context, index) {
-                                return _customTabs(
-                                  index: index,
-                                  model: model,
-                                  title: model.quickLinkTitles[index],
-                                  onTap: () {
-                                    model.selectQuickLink(index);
-                                    model.selectTabFunction(index);
-                                  },
-                                );
-                              },
+                              child: Row(
+                                children: List.generate(
+                                  model.quickLinkTitles.length,
+                                  (index) => Padding(
+                                    padding: EdgeInsets.only(right: 10.w),
+                                    child: _CustomTabs(
+                                      index: index,
+                                      model: model,
+                                      title: model.quickLinkTitles[index],
+                                      onTap: () {
+                                        // Your logic for tap
+                                      },
+                                    ),
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
-
-                          // Padding(
-                          //   padding: EdgeInsets.symmetric(horizontal: 15.w),
-                          //   child: Row(
-                          //     children: List.generate(
-                          //       model.quickLinkTitles.length,
-                          //       (index) => Padding(
-                          //         padding: EdgeInsets.only(right: 10.w),
-                          //         child: ,
-                          //       ),
-                          //     ),
-                          //   ),
-                          // ),
                         ),
                       ],
                     ),
-                    10.verticalSpace,
+                    30.verticalSpace,
                     _secondSection(model),
                   ],
                 ),
@@ -160,6 +157,7 @@ class RemedyDetailsScreen extends StatelessWidget {
                   itemCount: model.remedyList.length,
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(), // Important!
+
                   itemBuilder: (BuildContext context, int index) {
                     return CustomRemedyDetailsCardWidget(
                       remedy: model.remedyList[index],
@@ -188,7 +186,7 @@ class RemedyDetailsScreen extends StatelessWidget {
 ///
 ///      custom quick link item
 ///
-Widget _customTabs({
+Widget _CustomTabs({
   required int index,
   required RemedyDetailsViewModel model,
 
@@ -198,10 +196,12 @@ Widget _customTabs({
   final bool isSelected = model.selectedQuickLinkIndex == index;
 
   return GestureDetector(
-    onTap: onTap,
-
+    onTap: () {
+      onTap();
+      model.selectQuickLink(index);
+      model.selectTabFunction(index);
+    },
     child: Container(
-      margin: EdgeInsets.only(left: 10),
       decoration: BoxDecoration(
         color: isSelected ? primaryColor : whiteColor,
         borderRadius: BorderRadius.circular(100),
