@@ -15,7 +15,7 @@ class RootScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => RootViewModel(),
+      create: (context) => RootViewModel(initialIndex: selectedScreen ?? 0),
       child: Consumer<RootViewModel>(
         builder:
             (context, model, child) => Scaffold(
@@ -40,7 +40,7 @@ class RootScreen extends StatelessWidget {
                   Image.asset(AppAssets().myClient, scale: 3),
                   Image.asset(AppAssets().myFormula, scale: 3),
                   Image.asset(AppAssets().notification, scale: 3),
-                  Image.asset(AppAssets().profile, scale: 3),
+                  Image.asset(AppAssets().setting, scale: 3),
                 ],
                 onTap: (index) {
                   model.updateIndex(index);
