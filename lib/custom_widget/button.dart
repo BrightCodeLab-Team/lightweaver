@@ -6,8 +6,18 @@ import 'package:lightweaver/core/constants/text_style.dart';
 class CustomButton extends StatelessWidget {
   final String text;
   final VoidCallback onTap;
+  Widget? row;
+  bool? isWigetEnable;
+  IconData? icon;
 
-  const CustomButton({super.key, required this.text, required this.onTap});
+  CustomButton({
+    super.key,
+    required this.text,
+    required this.onTap,
+    this.row,
+    this.isWigetEnable,
+    this.icon,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +32,17 @@ class CustomButton extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.symmetric(vertical: 15.h),
           child: Center(
-            child: Text(text, style: style16.copyWith(color: whiteColor)),
+            child:
+                isWigetEnable == true
+                    ? Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(icon, color: whiteColor),
+                        10.horizontalSpace,
+                        Text(text, style: style16.copyWith(color: whiteColor)),
+                      ],
+                    )
+                    : Text(text, style: style16.copyWith(color: whiteColor)),
           ),
         ),
       ),
