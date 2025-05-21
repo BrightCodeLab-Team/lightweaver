@@ -40,8 +40,8 @@ class RemedyDetailsScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        Positioned(
-                          top: 190.h,
+                        Positioned.fill(
+                          top: 160.h,
                           left: 10.w,
                           child: Text(
                             'Remedy Details',
@@ -144,48 +144,39 @@ class RemedyDetailsScreen extends StatelessWidget {
   ///
   ///
   _secondSection(RemedyDetailsViewModel model) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15.0),
-      child: Container(
-        width: double.infinity,
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 15),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              10.verticalSpace,
-              model.selectedTabIndex == 0
-                  ? GridView.builder(
-                    itemCount: model.remedyList.length,
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(), // Important!
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 1,
-                          crossAxisSpacing: 10,
-                          mainAxisSpacing: 10,
-                          childAspectRatio: 2,
-                        ),
-                    itemBuilder: (BuildContext context, int index) {
-                      return CustomRemedyDetailsCardWidget(
-                        remedy: model.remedyList[index],
-                        isSelected: model.selectedCardIndex == index,
-                        onTap: () => model.selectCard(index),
-                      );
-                    },
-                  )
-                  : model.selectedTabIndex == 1
-                  ? Text('category')
-                  : model.selectedTabIndex == 2
-                  ? Text('property')
-                  : model.selectedTabIndex == 3
-                  ? Text('vibration')
-                  : model.selectedTabIndex == 4
-                  ? Text('use')
-                  : Text('all'),
-              50.verticalSpace,
-            ],
-          ),
+    return Container(
+      width: double.infinity,
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 15),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            10.verticalSpace,
+            model.selectedTabIndex == 0
+                ? ListView.builder(
+                  itemCount: model.remedyList.length,
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(), // Important!
+
+                  itemBuilder: (BuildContext context, int index) {
+                    return CustomRemedyDetailsCardWidget(
+                      remedy: model.remedyList[index],
+                      isSelected: model.selectedCardIndex == index,
+                      onTap: () => model.selectCard(index),
+                    );
+                  },
+                )
+                : model.selectedTabIndex == 1
+                ? Text('category')
+                : model.selectedTabIndex == 2
+                ? Text('property')
+                : model.selectedTabIndex == 3
+                ? Text('vibration')
+                : model.selectedTabIndex == 4
+                ? Text('use')
+                : Text('all'),
+            50.verticalSpace,
+          ],
         ),
       ),
     );
