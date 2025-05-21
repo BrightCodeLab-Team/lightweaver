@@ -65,7 +65,7 @@ TextStyle style16N = TextStyle(
 );
 TextStyle style14N = TextStyle(
   fontSize: 14.sp,
-  color: Colors.white,
+  color: whiteColor,
   fontWeight: FontWeight.w300,
   fontFamily: GoogleFonts.inter().fontFamily,
 );

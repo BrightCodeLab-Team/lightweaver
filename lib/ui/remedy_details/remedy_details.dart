@@ -6,7 +6,6 @@ import 'package:lightweaver/core/constants/auth_text_feild.dart';
 import 'package:lightweaver/core/constants/colors.dart';
 import 'package:lightweaver/core/constants/text_style.dart';
 import 'package:lightweaver/custom_widget/remedy_details.dart';
-import 'package:lightweaver/ui/home/home_view_model.dart';
 import 'package:lightweaver/ui/notifications/notification_screen.dart';
 import 'package:lightweaver/ui/remedy_details/remedy_details_view_model.dart';
 import 'package:provider/provider.dart';

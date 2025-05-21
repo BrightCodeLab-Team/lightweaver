@@ -25,7 +25,7 @@ final InputDecoration authFieldDecoration = InputDecoration(
     borderSide: BorderSide(color: borderColor),
   ),
   filled: true,
-  fillColor: Colors.white,
+  fillColor: whiteColor,
   hintStyle: style14B.copyWith(
     fontWeight: FontWeight.w400, // Adjusted font weight
     fontSize: 16.sp, // Adjusted font size
@@ -58,7 +58,7 @@ final InputDecoration forgetAuthFieldDecoration = InputDecoration(
     borderSide: BorderSide(color: borderColor),
   ),
   filled: true,
-  fillColor: Colors.white,
+  fillColor: whiteColor,
   hintStyle: style14B.copyWith(
     fontWeight: FontWeight.w400, // Adjusted font weight
     fontSize: 16.sp, // Adjusted font size

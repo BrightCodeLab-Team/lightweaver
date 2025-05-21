@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/route_manager.dart';
 import 'package:lightweaver/core/constants/auth_text_feild.dart';
 import 'package:lightweaver/core/constants/colors.dart';
 import 'package:lightweaver/core/constants/text_style.dart';
 import 'package:lightweaver/custom_widget/button.dart';
+import 'package:lightweaver/ui/auth/forget_screens/password_reset_successful.dart';
 
 class SetNewPasswordScreen extends StatelessWidget {
   const SetNewPasswordScreen({super.key});
@@ -66,7 +68,12 @@ class SetNewPasswordScreen extends StatelessWidget {
               ),
             ),
             30.verticalSpace,
-            CustomButton(text: 'Reset Password', onTap: () {}),
+            CustomButton(
+              text: 'Update Password',
+              onTap: () {
+                Get.to(PasswordResetSuccessfulScreen());
+              },
+            ),
           ],
         ),
       ),

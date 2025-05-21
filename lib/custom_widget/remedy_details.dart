@@ -52,7 +52,7 @@ class CustomRemedyDetailsCardWidget extends StatelessWidget {
                   children: [
                     20.verticalSpace,
                     Text(
-                      '${remedy.title}',
+                      remedy.title,
                       style: style16B.copyWith(
                         color: isSelected ? whiteColor : primaryColor,
                       ),

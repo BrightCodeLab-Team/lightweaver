@@ -137,7 +137,7 @@ class OnboardingScreen extends StatelessWidget {
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: primaryColor,
-                              foregroundColor: Colors.white,
+                              foregroundColor: whiteColor,
                             ),
                             child: Padding(
                               padding: const EdgeInsets.symmetric(
