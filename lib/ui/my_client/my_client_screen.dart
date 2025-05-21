@@ -42,6 +42,7 @@ class MyClientScreen extends StatelessWidget {
                         ),
                         Positioned.fill(
                           top: 150,
+                          left: 10,
                           child: Text(
                             'My Clients',
                             style: style25B.copyWith(color: primaryColor),
@@ -50,8 +51,8 @@ class MyClientScreen extends StatelessWidget {
 
                         Positioned(
                           top: 200,
-                          left: 20,
-                          right: 20,
+                          left: 10,
+                          right: 10,
                           child: Container(
                             decoration: BoxDecoration(
                               color: transparentColor,
@@ -161,6 +162,7 @@ class MyClientScreen extends StatelessWidget {
                     ListView.builder(
                       physics: NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
+                      padding: EdgeInsets.symmetric(horizontal: 10),
                       itemCount: model.clients.length,
                       itemBuilder: (context, index) {
                         final client = model.clients[index];

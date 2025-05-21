@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
+import 'package:get/instance_manager.dart';
 import 'package:lightweaver/core/constants/app_assest.dart';
 import 'package:lightweaver/core/constants/auth_text_feild.dart';
 import 'package:lightweaver/core/constants/colors.dart';
 import 'package:lightweaver/core/constants/strings.dart';
-import 'package:lightweaver/core/constants/text_style.dart';
 import 'package:lightweaver/custom_widget/button.dart';
 import 'package:lightweaver/custom_widget/custom_backround_stack.dart';
+import 'package:lightweaver/ui/my_formulas/formula_history/formula_history_screen.dart';
 import 'package:lightweaver/ui/my_formulas/my_formulas_view_model.dart';
-import 'package:lightweaver/ui/notifications/notification_screen.dart';
 import 'package:provider/provider.dart';
 
 class MyFormulasScreen extends StatelessWidget {
@@ -242,7 +241,10 @@ class MyFormulasScreen extends StatelessWidget {
                   final isSelected = model.selectedIndex == index;
 
                   return GestureDetector(
-                    onTap: () => model.selectRemedy(index),
+                    onTap: () {
+                      model.selectRemedy(index);
+                      Get.to(FormulaHistoryScreen());
+                    },
                     child: Container(
                       margin: EdgeInsets.only(bottom: 10),
                       padding: EdgeInsets.symmetric(

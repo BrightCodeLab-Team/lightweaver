@@ -22,6 +22,9 @@ class CustomRemedyDetailsCardWidget extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
+        width: double.infinity,
+        margin: EdgeInsets.only(bottom: 16),
+        padding: EdgeInsets.all(10),
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
@@ -34,86 +37,84 @@ class CustomRemedyDetailsCardWidget extends StatelessWidget {
           color: isSelected ? primaryColor : whiteColor,
           borderRadius: BorderRadius.circular(16),
         ),
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              CircleAvatar(
-                radius: 40,
-                backgroundImage: AssetImage(
-                  remedy.imageUrl ?? AppAssets().profile,
-                ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            CircleAvatar(
+              radius: 30,
+              backgroundImage: AssetImage(
+                remedy.imageUrl ?? AppAssets().profile,
               ),
-              20.horizontalSpace,
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    20.verticalSpace,
-                    Text(
-                      remedy.title,
-                      style: style16B.copyWith(
-                        color: isSelected ? whiteColor : primaryColor,
-                      ),
+            ),
+            10.horizontalSpace,
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  16.verticalSpace,
+                  Text(
+                    remedy.title,
+                    style: style16B.copyWith(
+                      color: isSelected ? whiteColor : primaryColor,
                     ),
-                    15.verticalSpace,
-                    Row(
-                      children: [
-                        Text(
-                          'for: ',
-                          style: style12.copyWith(
+                  ),
+                  15.verticalSpace,
+                  Row(
+                    children: [
+                      Text(
+                        'for: ',
+                        style: style12.copyWith(
+                          color: isSelected ? whiteColor : darkGreyColor,
+                        ),
+                      ),
+                      ...remedy.uses.map(
+                        (use) => Text(
+                          " $use,",
+                          style: style14.copyWith(
                             color: isSelected ? whiteColor : darkGreyColor,
                           ),
                         ),
-                        ...remedy.uses.map(
-                          (use) => Text(
-                            " $use,",
-                            style: style14.copyWith(
-                              color: isSelected ? whiteColor : darkGreyColor,
-                            ),
-                          ),
+                      ),
+                    ],
+                  ),
+                  5.verticalSpace,
+                  Wrap(
+                    children: [
+                      Text(
+                        'Key words:',
+                        style: style12.copyWith(
+                          fontWeight: FontWeight.w500,
+                          color: isSelected ? whiteColor : lightGreyColor2,
                         ),
-                      ],
-                    ),
-                    5.verticalSpace,
-                    Row(
-                      children: [
-                        Text(
-                          'Key words:',
-                          style: style12.copyWith(
-                            fontWeight: FontWeight.w500,
+                      ),
+                      ...remedy.keywords.map(
+                        (keywords) => Text(
+                          " $keywords,",
+                          style: style14.copyWith(
                             color: isSelected ? whiteColor : lightGreyColor2,
                           ),
                         ),
-                        ...remedy.keywords.map(
-                          (keywords) => Text(
-                            " $keywords,",
-                            style: style14.copyWith(
-                              color: isSelected ? whiteColor : lightGreyColor2,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    15.verticalSpace,
-                    GestureDetector(
-                      onTap: () {
-                        print('rout to detail screen');
-                      },
-                      child: Text(
-                        'View details',
-                        style: style16.copyWith(
-                          color: isSelected ? whiteColor : primaryColor,
-                          fontWeight: FontWeight.w700,
-                        ),
+                      ),
+                    ],
+                  ),
+                  15.verticalSpace,
+                  GestureDetector(
+                    onTap: () {
+                      print('rout to detail screen');
+                    },
+                    child: Text(
+                      'View details',
+                      style: style16.copyWith(
+                        color: isSelected ? whiteColor : primaryColor,
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
