@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lightweaver/core/constants/colors.dart';
+import 'package:lightweaver/ui/my_formulas/formula_history/formula_history_screen.dart';
 import 'package:lightweaver/ui/onboarding_screen/splash_screen.dart';
 
 void main() {
@@ -42,7 +43,7 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
             useMaterial3: true,
           ),
-          home: RootScreen(),
+          home: FormulaHistoryScreen(),
         );
       },
     );
