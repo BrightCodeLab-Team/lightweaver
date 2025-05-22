@@ -36,8 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   provider:  # provider
   google_fonts:
-  flutter_screenutil: 
-  firebase_core:
+  flutter_screenutil:
   font_awesome_flutter:
   get:
   confetti:
@@ -50,6 +49,17 @@ dependencies:
   animated_bottom_navigation_bar: ^1.4.0
   stylish_bottom_bar: ^1.1.1
   curved_navigation_bar: ^1.0.6
+  get_it: 
+  firebase_core: 
+  firebase_auth: 
+  # flutter_local_notifications: 
+  cloud_firestore: 
+  firebase_storage:
+  shared_preferences: 
+  google_sign_in:
+  modal_progress_hud_nsn:
+  connectivity_plus: ^6.1.4
+
 
 dev_dependencies:
   flutter_test:
