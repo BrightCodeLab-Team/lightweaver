@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "885115401948",
+    "project_id": "lightweaver-6af9c",
+    "storage_bucket": "lightweaver-6af9c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:885115401948:android:fdad8c0169924a7eb1a619",
+        "android_client_info": {
+          "package_name": "com.example.lightweaver"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDco0pBLdP9cb5RUa63gmKYLnB1O45kBjk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -6,6 +6,7 @@ import 'package:lightweaver/core/constants/app_assest.dart';
 import 'package:lightweaver/core/constants/auth_text_feild.dart';
 import 'package:lightweaver/core/constants/colors.dart';
 import 'package:lightweaver/core/constants/text_style.dart';
+import 'package:lightweaver/ui/my_client/add_new_client/add_new_client_screen.dart';
 import 'package:lightweaver/ui/my_client/my_client_view_model.dart';
 import 'package:lightweaver/ui/notifications/notification_screen.dart';
 import 'package:provider/provider.dart';
@@ -242,7 +243,9 @@ class MyClientScreen extends StatelessWidget {
                 ),
               ),
               floatingActionButton: FloatingActionButton.extended(
-                onPressed: () {},
+                onPressed: () {
+                  Get.to(NewClientProfileScreen());
+                },
                 backgroundColor: primaryColor,
                 icon: Icon(Icons.add, color: whiteColor),
                 label: Text(
