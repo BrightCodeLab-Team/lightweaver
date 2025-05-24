@@ -1,19 +1,20 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lightweaver/core/constants/colors.dart';
-import 'package:lightweaver/ui/onboarding_screen/splash_screen.dart';
+import 'package:lightweaver/firebase_option.dart';
+import 'package:lightweaver/locator.dart';
+import 'package:lightweaver/ui/splash_screen.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await setupLocator();
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
   runApp(const MyApp());
-  //************ */
-  // List<int> prices = [8, 4, 3, 2, 6];
-  // prices.add(10);
-  // for (int i = 0; i <= prices.length - 1; i++) {
-  //   print(prices[i]);
-  // }
-  //*********** */
 }
 
 class MyApp extends StatelessWidget {
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
           defaultTransition: Transition.rightToLeft,
+          title: 'LightWeaver',
           theme: ThemeData(
             appBarTheme: AppBarTheme(
               backgroundColor: backGroundColor,
