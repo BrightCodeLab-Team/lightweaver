@@ -1,3 +1,8 @@
+
+import 'package:lightweaver/core/others/base_view_model.dart';
+
+class SettingViewModel extends BaseViewModel {
+
 import 'package:get/route_manager.dart';
 import 'package:lightweaver/core/enums/view_state_model.dart';
 import 'package:lightweaver/core/others/base_view_model.dart';
@@ -7,6 +12,7 @@ import 'package:lightweaver/ui/auth/sign_in/sign_in_screen.dart';
 
 class SettingViewModel extends BaseViewModel {
   final authServices = locator<AuthServices>();
+
   int _selectedIndex = 0;
 
   int get selectedIndex => _selectedIndex;
@@ -15,6 +21,7 @@ class SettingViewModel extends BaseViewModel {
     _selectedIndex = index;
     notifyListeners();
   }
+
 
   lgout() async {
     setState(ViewState.busy);
@@ -25,4 +32,5 @@ class SettingViewModel extends BaseViewModel {
 
     setState(ViewState.busy);
   }
+
 }
