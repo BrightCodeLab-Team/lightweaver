@@ -41,45 +41,50 @@ class RemedyDetailsScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        Positioned.fill(
-                          top: 130.h,
-                          left: 10.w,
-                          child: Text(
-                            'Remedy Details',
-                            style: style25B.copyWith(color: primaryColor),
-                          ),
-                        ),
 
-                        Positioned(
-                          top: 180,
-                          left: 10,
-                          right: 10,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: transparentColor,
-                              boxShadow: [
-                                BoxShadow(
-                                  offset: Offset(0, 0),
-                                  color: Color(0XFFA1A1A1).withOpacity(0.25),
-                                  blurRadius: 8.0,
-                                  spreadRadius: 0,
+
+
+                          bottom: 0,
+                          top: 80,
+                          right: 15.w, // Added right position
+                          child: Row(
+                            children: [
+                              Container(
+                                height: 50.h,
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  color: transparentColor,
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(29),
+                                    topRight: Radius.circular(29),
+                                  ),
                                 ),
-                              ],
-                              borderRadius: BorderRadius.circular(29),
-                            ),
-                            child: TextFormField(
-                              decoration: authFieldDecoration.copyWith(
-                                contentPadding: EdgeInsets.symmetric(
-                                  horizontal: 20,
-                                ),
-                                hintText: 'Search',
-                                suffixIcon: Icon(
-                                  Icons.search,
-                                  color: blackColor,
-                                  size: 20,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    TextFormField(
+                                      decoration: authFieldDecoration.copyWith(
+                                        contentPadding: EdgeInsets.symmetric(
+                                          horizontal: 20,
+                                        ),
+                                        hintText: 'Search',
+                                        suffixIcon: Icon(
+                                          Icons.search,
+                                          color: blackColor,
+                                          size: 20,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                            ),
+
+                              ///
+                              ///      add new formula
+                              ///
+                            ],
+
                           ),
                         ),
                         Positioned(
