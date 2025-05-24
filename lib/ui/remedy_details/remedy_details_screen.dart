@@ -41,16 +41,9 @@ class RemedyDetailsScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        Positioned.fill(
-                          top: 100.h,
-                          left: 10.w,
-                          child: Text(
-                            'Remedy Details',
-                            style: style25B.copyWith(color: primaryColor),
-                          ),
-                        ),
 
-                        Positioned(
+
+
                           bottom: 0,
                           top: 80,
                           right: 15.w, // Added right position
@@ -91,6 +84,7 @@ class RemedyDetailsScreen extends StatelessWidget {
                               ///      add new formula
                               ///
                             ],
+
                           ),
                         ),
                         Positioned(
