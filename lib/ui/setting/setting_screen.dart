@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/instance_manager.dart';
 import 'package:lightweaver/core/constants/app_assest.dart';
 import 'package:lightweaver/core/constants/colors.dart';
 import 'package:lightweaver/core/constants/text_style.dart';
@@ -12,12 +11,11 @@ import 'package:lightweaver/custom_widget/custom_backround_stack.dart';
 
 import 'package:lightweaver/core/enums/view_state_model.dart';
 import 'package:lightweaver/custom_widget/custom_backround_stack.dart';
-import 'package:lightweaver/ui/auth/sign_in/sign_in_screen.dart';
-
 import 'package:lightweaver/ui/setting/appearance/apperance_screen.dart';
 import 'package:lightweaver/ui/setting/cloud/cloud_screen.dart';
 import 'package:lightweaver/ui/setting/email/email_template_screen.dart';
 import 'package:lightweaver/ui/setting/export_data/export_data_screen.dart';
+import 'package:lightweaver/ui/setting/help_and_support/help_and_support.dart';
 import 'package:lightweaver/ui/setting/profile/profile_screen.dart';
 import 'package:lightweaver/ui/setting/reminder/reminder_screen.dart';
 
@@ -242,6 +240,8 @@ class SettingScreen extends StatelessWidget {
 
             : index == 5
             ? Get.to(ExportDataScreen())
+            : index == 6
+            ? Get.to(HelpAndSupportScreen())
             : model.lgout();
 
       },
