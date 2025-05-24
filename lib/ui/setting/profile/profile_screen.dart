@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:get/utils.dart';
 import 'package:lightweaver/core/constants/app_assest.dart';
 import 'package:lightweaver/core/constants/colors.dart';
+import 'package:lightweaver/ui/notifications/notification_screen.dart';
 import 'package:lightweaver/ui/setting/setting_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -45,13 +46,17 @@ class ProfileScreen extends StatelessWidget {
                         Positioned(
                           top: 16,
                           right: 16,
-                          child: Icon(
-                            Icons.notifications,
-                            color: Colors.orange,
-                            size: 30,
+                          child: GestureDetector(
+                            onTap: () {
+                              Get.to(() => NotificationScreen());
+                            },
+                            child: Icon(
+                              Icons.notifications,
+                              color: primaryColor,
+                              size: 30,
+                            ),
                           ),
                         ),
-
                         Align(
                           alignment: Alignment.center,
                           child: Container(

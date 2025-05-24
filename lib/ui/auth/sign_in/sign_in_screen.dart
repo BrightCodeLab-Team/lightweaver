@@ -14,7 +14,6 @@ import 'package:lightweaver/custom_widget/social_button.dart';
 import 'package:lightweaver/ui/auth/forget_screens/forget_screen.dart';
 import 'package:lightweaver/ui/auth/sign_in/sign_in_view_model.dart';
 import 'package:lightweaver/ui/auth/sign_up/sign_up_screen.dart';
-import 'package:lightweaver/ui/root_screen/root_screen.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:provider/provider.dart';
 

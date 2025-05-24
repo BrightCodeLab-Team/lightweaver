@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+// import 'package:google_sign_in/google_sign_in.dart';
 import 'package:lightweaver/core/model/app_user.dart';
 import 'package:lightweaver/core/model/custom_auth_result.dart';
 import 'package:lightweaver/core/services/auth_exception.dart';
@@ -10,7 +10,7 @@ class AuthServices {
   final DatabaseServices _dbService = DatabaseServices();
   static final AuthServices instance = AuthServices();
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  final GoogleSignIn _googleSignIn = GoogleSignIn();
+  // final GoogleSignIn _googleSignIn = GoogleSignIn();
 
   User? user;
   bool isLogin = false;
