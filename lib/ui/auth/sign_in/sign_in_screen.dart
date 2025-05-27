@@ -18,7 +18,7 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:provider/provider.dart';
 
 class SignInScreen extends StatelessWidget {
-  final _formKey = GlobalKey<FormState>(); // Add this
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -56,6 +56,7 @@ class SignInScreen extends StatelessWidget {
                               ///
                               Positioned.fill(
                                 top: 100,
+                                left: 20,
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -113,7 +114,7 @@ class SignInScreen extends StatelessWidget {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          'Phone Number',
+                                          'Email',
                                           style: style14.copyWith(
                                             color: primaryColor,
                                           ),
@@ -213,8 +214,8 @@ class SignInScreen extends StatelessWidget {
                                               MainAxisAlignment.center,
                                           children: [
                                             Text(
-                                              'Don\'t have an account ',
-                                              style: style16.copyWith(
+                                              'Don\'t have an account? ',
+                                              style: style14.copyWith(
                                                 color: lightGreyColor,
                                               ),
                                             ),
@@ -225,7 +226,7 @@ class SignInScreen extends StatelessWidget {
                                                   ),
                                               child: Text(
                                                 'SIGN UP',
-                                                style: style16.copyWith(
+                                                style: style14B.copyWith(
                                                   color: primaryColor,
                                                 ),
                                               ),
@@ -271,18 +272,18 @@ class SignInScreen extends StatelessWidget {
                                           children: [
                                             CustomSocialButton(
                                               onTap:
-                                                  () => print(
-                                                    'Facebook signUp in Progress',
-                                                  ),
+                                                  () =>
+                                                      model.userFacebookLogin
+                                                      (),
                                               imagePath:
                                                   AppAssets().facebookIcon,
                                             ),
                                             10.horizontalSpace,
                                             CustomSocialButton(
                                               onTap:
-                                                  () => print(
-                                                    'Google signUp in Progress',
-                                                  ),
+                                                  () =>
+                                                      model
+                                                          .userLoginWithGoogle(),
                                               imagePath: AppAssets().googleIcon,
                                             ),
                                             10.horizontalSpace,

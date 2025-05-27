@@ -1,3 +1,5 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/route_manager.dart';
@@ -8,8 +10,6 @@ import 'package:lightweaver/custom_widget/button.dart';
 import 'package:lightweaver/ui/auth/sign_in/sign_in_screen.dart';
 
 class PasswordResetSuccessfulScreen extends StatelessWidget {
-  const PasswordResetSuccessfulScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,18 +20,22 @@ class PasswordResetSuccessfulScreen extends StatelessWidget {
           children: [
             Image.asset(AppAssets().Successmark, scale: 4),
             20.verticalSpace,
-            Text('Successful', style: style16B.copyWith(color: blackColor)),
-            20.verticalSpace,
             Text(
-              textAlign: TextAlign.center,
-              'Congratulations! Your password has\nbeen changed. Click continue to login',
-              style: style14.copyWith(fontSize: 12.sp, color: mediumGreyColor),
+              'Successful Send the link on your email',
+              style: style16.copyWith(color: blackColor),
             ),
             20.verticalSpace,
+
+            // Text(
+            //   textAlign: TextAlign.center,
+            //   'Congratulations! Your password has\nbeen changed. Click continue to login',
+            //   style: style14.copyWith(fontSize: 12.sp, color: mediumGreyColor),
+            // ),
+            // 20.verticalSpace,
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: CustomButton(
-                text: 'Update Password',
+                text: 'Back to SignIn',
                 onTap: () {
                   Get.offAll(SignInScreen());
                   print('button got pressed');

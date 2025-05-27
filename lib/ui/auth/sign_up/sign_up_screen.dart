@@ -27,6 +27,9 @@ class SignUpScreen extends StatelessWidget {
               inAsyncCall: model.state == ViewState.busy,
               progressIndicator: CircularProgressIndicator(color: primaryColor),
               child: Scaffold(
+                ///
+                /// Start Body
+                ///
                 body: SingleChildScrollView(
                   child: Form(
                     key: _formKey,
@@ -53,6 +56,7 @@ class SignUpScreen extends StatelessWidget {
                               ///
                               Positioned.fill(
                                 top: 100,
+                                left: 20,
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -360,7 +364,10 @@ class SignUpScreen extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Text("Already have an account?"),
+                                Text(
+                                  "Already have an account? ",
+                                  style: style14,
+                                ),
                                 TextButton(
                                   onPressed: () {
                                     Get.offAll(SignInScreen());

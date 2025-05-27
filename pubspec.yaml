@@ -57,6 +57,7 @@ dependencies:
   firebase_storage:
   shared_preferences: 
   google_sign_in:
+  flutter_facebook_auth:
   modal_progress_hud_nsn:
   connectivity_plus: ^6.1.4
 

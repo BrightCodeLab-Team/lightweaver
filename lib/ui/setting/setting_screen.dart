@@ -107,8 +107,8 @@ class SettingScreen extends StatelessWidget {
 
                             _settingContainer(
                               context: context,
-                              icon: AppAssets().help,
-                              icon1: AppAssets().help1,
+                              icon: AppAssets().export,
+                              icon1: AppAssets().export1,
                               text: 'Logout',
                               index: 7,
                             ),

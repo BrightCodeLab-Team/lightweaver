@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart' hide Order;
 import 'package:flutter/material.dart';
 import 'package:lightweaver/core/model/app_user.dart';
@@ -95,5 +97,31 @@ class DatabaseServices {
       debugPrint(s.toString());
       return false;
     }
+  }
+
+  // 1. Generate 6-digit OTP
+  String generateOTP({int length = 6}) {
+    final random = Random();
+    return List.generate(length, (_) => random.nextInt(10)).join();
+  }
+
+  // 2. Save OTP and send email (call email API here)
+  sendOtpToEmail(String email) async {
+    final otp = generateOTP();
+    print("otp send $otp");
+
+    // Store OTP with timestamp
+    await _db.collection('password_reset_otps').doc(email).set({
+      'otp': otp,
+      'timestamp': DateTime.now().millisecondsSinceEpoch,
+    });
+
+    print('OTP sent to $email: $otp');
+
+    // TODO: Replace this print with actual email sending code via:
+    // - Firebase Function
+    // - SendGrid API
+    // - Mailgun
+    // - Custom backend
   }
 }
