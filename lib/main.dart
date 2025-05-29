@@ -6,7 +6,9 @@ import 'package:get/get.dart';
 import 'package:lightweaver/core/constants/colors.dart';
 import 'package:lightweaver/firebase_option.dart';
 import 'package:lightweaver/locator.dart';
+import 'package:lightweaver/ui/remedy_details/remedy_details_view_model.dart';
 import 'package:lightweaver/ui/splash_screen.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,21 +32,28 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (_, child) {
-        return GetMaterialApp(
-          debugShowCheckedModeBanner: false,
-          defaultTransition: Transition.rightToLeft,
-          title: 'LightWeaver',
-          theme: ThemeData(
-            appBarTheme: AppBarTheme(
-              backgroundColor: backGroundColor,
-              shadowColor: transparentColor,
-              surfaceTintColor: transparentColor,
+        return MultiProvider(
+          providers: [
+            ChangeNotifierProvider(
+              create: (context) => RemedyDetailsViewModel(),
             ),
-            scaffoldBackgroundColor: backGroundColor,
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
-            useMaterial3: true,
+          ],
+          child: GetMaterialApp(
+            debugShowCheckedModeBanner: false,
+            defaultTransition: Transition.rightToLeft,
+            title: 'LightWeaver',
+            theme: ThemeData(
+              appBarTheme: AppBarTheme(
+                backgroundColor: backGroundColor,
+                shadowColor: transparentColor,
+                surfaceTintColor: transparentColor,
+              ),
+              scaffoldBackgroundColor: backGroundColor,
+              colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
+              useMaterial3: true,
+            ),
+            home: SplashScreen(),
           ),
-          home: SplashScreen(),
         );
       },
     );
