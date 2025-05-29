@@ -5,6 +5,7 @@ import 'package:lightweaver/core/enums/view_state_model.dart';
 import 'package:lightweaver/core/model/app_user.dart';
 import 'package:lightweaver/core/others/base_view_model.dart';
 import 'package:lightweaver/core/services/auth_services.dart';
+import 'package:lightweaver/custom_widget/snack_bar/custom_snack_bar.dart';
 import 'package:lightweaver/locator.dart';
 import 'package:lightweaver/ui/root_screen/root_screen.dart';
 
@@ -55,10 +56,13 @@ class SignUpViewModel extends BaseViewModel {
     final response = await authService.signUpWithEmailPassword(appUser);
 
     if (response.status == true) {
-      Get.snackbar('SucessFull', 'Your account is register Sucessfully');
+      customSnackbar(
+        title: 'Sucessfull',
+        message: 'Your account is register Sucessfully',
+      );
       Get.offAll(RootScreen());
     } else {
-      Get.snackbar('Error', '${response.errorMessage}');
+      customSnackbar(title: 'Error', message: '${response.errorMessage}');
     }
     setState(ViewState.idle);
     notifyListeners();

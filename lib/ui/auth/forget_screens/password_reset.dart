@@ -13,15 +13,37 @@ class PasswordResetScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: whiteColor,
+
+      ///
+      /// APP BAR
+      ///
+      appBar: AppBar(
+        backgroundColor: transparentColor,
+        shadowColor: transparentColor,
+        surfaceTintColor: transparentColor,
+        title: Text(
+          'Password Reset',
+          style: style16.copyWith(
+            fontWeight: FontWeight.w600,
+            color: blackColor,
+          ),
+        ),
+
+        automaticallyImplyLeading: true,
+      ),
+
+      ///
+      /// START BODY
+      ///
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 15),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            150.verticalSpace,
-            Text('Password reset', style: style16.copyWith(color: blackColor)),
             20.verticalSpace,
+            Text('Password reset', style: style16.copyWith(color: blackColor)),
+            10.verticalSpace,
             Text(
               'Your password has been successfully reset. click\nconfirm to set a new password',
               style: style14.copyWith(fontSize: 12.sp, color: mediumGreyColor),

@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable, use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/route_manager.dart';
@@ -8,18 +10,40 @@ import 'package:lightweaver/ui/auth/forget_screens/password_reset.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class VerifyCodeScreen extends StatelessWidget {
-  const VerifyCodeScreen({super.key});
-
+  String? email;
+  VerifyCodeScreen({required this.email});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: whiteColor,
+
+      ///
+      /// APP BAR
+      ///
+      appBar: AppBar(
+        backgroundColor: transparentColor,
+        shadowColor: transparentColor,
+        surfaceTintColor: transparentColor,
+        title: Text(
+          'OTP',
+          style: style16.copyWith(
+            fontWeight: FontWeight.w600,
+            color: blackColor,
+          ),
+        ),
+
+        automaticallyImplyLeading: true,
+      ),
+
+      ///
+      /// START BODY
+      ///
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            150.verticalSpace,
+            20.verticalSpace,
             Text(
               'Check your email',
               style: style16.copyWith(
@@ -27,9 +51,9 @@ class VerifyCodeScreen extends StatelessWidget {
                 color: blackColor,
               ),
             ),
-            20.verticalSpace,
+            10.verticalSpace,
             Text(
-              'We sent a reset link to alpha...@gmail.com\nenter 5 digit code that mentioned in the email',
+              'We sent a reset link to $email\n enter 5 digit code that mentioned in the email',
               style: style14.copyWith(fontSize: 12, color: mediumGreyColor),
             ),
 

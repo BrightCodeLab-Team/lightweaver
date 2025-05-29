@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lightweaver/core/constants/colors.dart';
 import 'package:lightweaver/core/constants/text_style.dart';
 
-final InputDecoration authFieldDecoration = InputDecoration(
+final authFieldDecoration = InputDecoration(
   contentPadding: const EdgeInsets.symmetric(
     vertical: 10.0,
     horizontal: 10.0,

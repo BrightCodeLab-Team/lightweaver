@@ -102,6 +102,7 @@ class AppAssets {
   String appearance1 = "$iconsAssets/appearance1.png";
   String export = "$iconsAssets/export.png";
   String export1 = "$iconsAssets/export1.png";
+  String logout = "$iconsAssets/logout.png";
 
   ///
   //************************************ *//

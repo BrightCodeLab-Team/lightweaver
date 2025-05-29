@@ -1,32 +1,31 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:get/utils.dart';
 import 'package:lightweaver/core/constants/app_assest.dart';
 import 'package:lightweaver/core/constants/colors.dart';
 import 'package:lightweaver/core/constants/text_style.dart';
-import 'package:lightweaver/core/model/remedy_details.dart';
-import 'package:lightweaver/ui/remedy_details/remedy_formula_detail/remedy_formula_detail_screen.dart';
+import 'package:lightweaver/core/model/remedies_categories.dart';
 
 class CustomRemedyDetailsCardWidget extends StatelessWidget {
-  final RemedyModel remedy;
+  final RemedyCategoryModel remedyCategoryModel;
   final bool isSelected;
   final VoidCallback onTap;
+  int? index;
 
-  const CustomRemedyDetailsCardWidget({
+  CustomRemedyDetailsCardWidget({
     super.key,
-    required this.remedy,
+    required this.remedyCategoryModel,
     required this.isSelected,
     required this.onTap,
+    required this.index,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        onTap;
-        Get.to(RemedyFormulaDetailScreen());
-      },
+      onTap: onTap,
+
       child: Container(
         width: double.infinity,
         margin: EdgeInsets.only(bottom: 16),
@@ -50,7 +49,8 @@ class CustomRemedyDetailsCardWidget extends StatelessWidget {
             CircleAvatar(
               radius: 30,
               backgroundImage: AssetImage(
-                remedy.imageUrl ?? AppAssets().profile,
+                remedyCategoryModel.remedies![index!].image ??
+                    AppAssets().profile,
               ),
             ),
             10.horizontalSpace,
@@ -60,7 +60,7 @@ class CustomRemedyDetailsCardWidget extends StatelessWidget {
                 children: [
                   16.verticalSpace,
                   Text(
-                    remedy.title,
+                    "${remedyCategoryModel.remedies![index!].name}",
                     style: style16B.copyWith(
                       color: isSelected ? whiteColor : primaryColor,
                     ),
@@ -74,14 +74,15 @@ class CustomRemedyDetailsCardWidget extends StatelessWidget {
                           color: isSelected ? whiteColor : darkGreyColor,
                         ),
                       ),
-                      ...remedy.uses.map(
-                        (use) => Text(
-                          " $use,",
-                          style: style14.copyWith(
-                            color: isSelected ? whiteColor : darkGreyColor,
+                      ...remedyCategoryModel.remedies![index!].forCondition!
+                          .map(
+                            (use) => Text(
+                              " $use,",
+                              style: style14.copyWith(
+                                color: isSelected ? whiteColor : darkGreyColor,
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
                     ],
                   ),
                   5.verticalSpace,
@@ -94,7 +95,7 @@ class CustomRemedyDetailsCardWidget extends StatelessWidget {
                           color: isSelected ? whiteColor : lightGreyColor2,
                         ),
                       ),
-                      ...remedy.keywords.map(
+                      ...remedyCategoryModel.remedies![index!].keywords!.map(
                         (keywords) => Text(
                           " $keywords,",
                           style: style14.copyWith(

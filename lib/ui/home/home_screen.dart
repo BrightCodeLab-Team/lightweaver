@@ -32,7 +32,8 @@ class HomeScreen extends StatelessWidget {
                         Image.asset(AppAssets().welcomeScreen, scale: 4),
                         Positioned(
                           right: 10,
-                          top: 30,
+                          top: 50,
+
                           child: GestureDetector(
                             onTap: () {
                               Get.to(NotificationScreen());
@@ -45,8 +46,9 @@ class HomeScreen extends StatelessWidget {
                         ),
                         Positioned.fill(
                           top: 170,
+                          left: 16,
                           child: Text(
-                            'Welcome, Shayan',
+                            'Welcome, ${model.authServices.appUser.name}',
                             style: style25B.copyWith(color: primaryColor),
                           ),
                         ),

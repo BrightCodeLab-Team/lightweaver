@@ -14,12 +14,34 @@ class SetNewPasswordScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: whiteColor,
+
+      ///
+      /// APP BAR
+      ///
+      appBar: AppBar(
+        backgroundColor: transparentColor,
+        shadowColor: transparentColor,
+        surfaceTintColor: transparentColor,
+        title: Text(
+          'Set New Password',
+          style: style16.copyWith(
+            fontWeight: FontWeight.w600,
+            color: blackColor,
+          ),
+        ),
+
+        automaticallyImplyLeading: true,
+      ),
+
+      ///
+      /// START BODY
+      ///
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            150.verticalSpace,
+            20.verticalSpace,
             Text(
               'Set new Password',
               style: style16.copyWith(
@@ -27,7 +49,7 @@ class SetNewPasswordScreen extends StatelessWidget {
                 color: blackColor,
               ),
             ),
-            20.verticalSpace,
+            10.verticalSpace,
             Text(
               'Create a new password. Ensure it differs from\nprevious ones for security',
               style: style14.copyWith(fontSize: 12, color: mediumGreyColor),
