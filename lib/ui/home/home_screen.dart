@@ -8,6 +8,7 @@ import 'package:lightweaver/core/constants/auth_text_feild.dart';
 import 'package:lightweaver/core/constants/colors.dart';
 import 'package:lightweaver/core/constants/text_style.dart';
 import 'package:lightweaver/ui/home/home_view_model.dart';
+import 'package:lightweaver/ui/my_formulas/myformula_detail/my_formula_details_screen.dart';
 import 'package:lightweaver/ui/notifications/notification_screen.dart';
 import 'package:lightweaver/ui/remedy_details/remedy_details_screen.dart';
 import 'package:lightweaver/ui/root_screen/root_screen.dart';
@@ -79,20 +80,22 @@ class HomeScreen extends StatelessWidget {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      TextFormField(
-                                        decoration: authFieldDecoration
-                                            .copyWith(
-                                              contentPadding:
-                                                  EdgeInsets.symmetric(
-                                                    horizontal: 20,
-                                                  ),
-                                              hintText: 'Search',
-                                              suffixIcon: Icon(
-                                                Icons.search,
-                                                color: blackColor,
-                                                size: 20,
+                                      Expanded(
+                                        child: TextFormField(
+                                          decoration: authFieldDecoration
+                                              .copyWith(
+                                                contentPadding:
+                                                    EdgeInsets.symmetric(
+                                                      horizontal: 20,
+                                                    ),
+                                                hintText: 'Search',
+                                                suffixIcon: Icon(
+                                                  Icons.search,
+                                                  color: blackColor,
+                                                  size: 20,
+                                                ),
                                               ),
-                                            ),
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -102,22 +105,29 @@ class HomeScreen extends StatelessWidget {
                               ///
                               ///      add new formula
                               ///
-                              Container(
-                                height: 50,
+                              GestureDetector(
+                                onTap: () {
+                                  Get.to(() => MyFormulaDetailsScreen());
+                                },
+                                child: Container(
+                                  height: 50,
 
-                                decoration: BoxDecoration(
-                                  color: whiteColor,
-                                  borderRadius: BorderRadius.circular(70.r),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 8),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Icon(Icons.add, color: blackColor),
-                                      Text('New Formula', style: style14B),
-                                    ],
+                                  decoration: BoxDecoration(
+                                    color: whiteColor,
+                                    borderRadius: BorderRadius.circular(70.r),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: 8,
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Icon(Icons.add, color: blackColor),
+                                        Text('New Formula', style: style14B),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),

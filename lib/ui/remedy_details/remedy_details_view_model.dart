@@ -1,4 +1,3 @@
-import 'package:lightweaver/core/constants/app_assest.dart';
 import 'package:lightweaver/core/enums/view_state_model.dart';
 import 'package:lightweaver/core/model/remedies_categories.dart';
 import 'package:lightweaver/core/model/remedy_details.dart';

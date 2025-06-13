@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
@@ -128,9 +126,6 @@ class AuthServices {
       return Future.error(e.toString());
     }
   }
-
-
-  
 
   Future<CustomAuthResult> signupWithFacebook() async {
     CustomAuthResult customAuthResult = CustomAuthResult();

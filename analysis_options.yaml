@@ -10,6 +10,7 @@
 analyzer:
   errors:
     unnecessary_null_comparison: ignore
+    invalid_use_of_protected_member: ignore
 include: package:flutter_lints/flutter.yaml
 
 linter:

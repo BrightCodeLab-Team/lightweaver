@@ -19,7 +19,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.7.2
+  sdk: ^3.7.0
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -42,7 +42,7 @@ dependencies:
   confetti:
   path_provider:
   animated_text_kit: ^4.2.3
-  intl: ^0.20.2
+  intl: ^0.19.0
   smooth_page_indicator:
   pin_code_fields:
   country_picker:
@@ -51,7 +51,8 @@ dependencies:
   curved_navigation_bar: ^1.0.6
   get_it: 
   firebase_core: 
-  firebase_auth: 
+  firebase_auth:
+  device_preview: ^1.2.0 
   # flutter_local_notifications: 
   cloud_firestore: 
   firebase_storage:
@@ -60,6 +61,10 @@ dependencies:
   flutter_facebook_auth:
   modal_progress_hud_nsn:
   connectivity_plus: ^6.1.4
+  image_picker:
+  file_picker:
+  logger:
+  shimmer:
 
 
 dev_dependencies:

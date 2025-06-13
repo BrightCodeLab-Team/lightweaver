@@ -1,8 +1,12 @@
+// ignore_for_file: avoid_print
+
 import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart' hide Order;
 import 'package:flutter/material.dart';
 import 'package:lightweaver/core/model/app_user.dart';
+import 'package:lightweaver/core/model/cleint_profile.dart';
+import 'package:lightweaver/core/model/formula_model.dart';
 import 'package:lightweaver/core/model/remedies_categories.dart';
 import 'package:lightweaver/core/model/remedy_details.dart';
 
@@ -146,6 +150,93 @@ class DatabaseServices {
             .toList();
 
     return allRemedies;
+  }
+
+  ///
+  /// Formula Builder
+  ///
+  Future<bool> saveFormula(FormulaModel formula) async {
+    try {
+      await _db.collection('formulas').add(formula.toJson());
+      debugPrint('✅ Formula saved successfully');
+      return true;
+    } catch (e, s) {
+      debugPrint('❌ Exception @saveFormula: $e');
+      debugPrint(s.toString());
+      return false;
+    }
+  }
+
+  ///
+  /// Get All Data
+  ///
+  Future<List<FormulaModel>> getAllFormulas() async {
+    try {
+      final snapshot = await _db.collection('formulas').get();
+      final formulas =
+          snapshot.docs
+              .map((doc) => FormulaModel.fromJson(doc.data()))
+              .toList();
+      return formulas;
+    } catch (e, s) {
+      debugPrint('❌ Exception @getAllFormulas: $e');
+      debugPrint(s.toString());
+      return [];
+    }
+  }
+
+  // Future<List<RemedyDetailsModel>> getAllRemedies() async {
+  //   final snapshot = await _db.collection('remedyCategories').get();
+
+  //   final allRemedies =
+  //       snapshot.docs.expand((doc) {
+  //         final remedies = doc.data()['remedies'] as List<dynamic>? ?? [];
+  //         return remedies.map((r) => RemedyDetailsModel.fromJson(r));
+  //       }).toList();
+
+  //   return allRemedies;
+  // }
+
+  ///
+  /// cleint profile
+  ///
+  // Future<void> addClientProfile(ClientProfile profile) async {
+  //   try {
+  //     final docId = _db.collection('client_profiles').doc().id;
+  //     await _db.collection('client_profiles').doc(docId).set(profile.toJson());
+  //     debugPrint('Client profile saved with ID: $docId');
+  //   } catch (e, s) {
+  //     debugPrint('Exception @addClientProfile: $e');
+  //     debugPrint(s.toString());
+  //   }
+  // }
+
+  addClientProfile(ClientProfile profile) async {
+    try {
+      await _db
+          .collection('client_profiles')
+          .add(profile.toJson())
+          .then((value) => debugPrint('client_profiles successfully added'));
+      return true;
+    } catch (e, s) {
+      debugPrint('Exception @DatabaseService/contact_us');
+      debugPrint(s.toString());
+      return false;
+    }
+  }
+
+  Future<List<ClientProfile>> getAllClientProfiles() async {
+    try {
+      final snapshot = await _db.collection('client_profiles').get();
+
+      return snapshot.docs.map((doc) {
+        return ClientProfile.fromJson(doc.data());
+      }).toList();
+    } catch (e, s) {
+      debugPrint('Exception @getAllClientProfiles: $e');
+      debugPrint(s.toString());
+      return [];
+    }
   }
 
   // 1. Generate 6-digit OTP

@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:lightweaver/core/constants/colors.dart';
 import 'package:lightweaver/firebase_option.dart';
 import 'package:lightweaver/locator.dart';
+import 'package:lightweaver/ui/my_client/my_client_view_model.dart';
 import 'package:lightweaver/ui/remedy_details/remedy_details_view_model.dart';
 import 'package:lightweaver/ui/splash_screen.dart';
 import 'package:provider/provider.dart';
@@ -25,10 +26,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: Size(
-        MediaQuery.of(context).size.width,
-        MediaQuery.sizeOf(context).height,
-      ),
+      // designSize: Size(
+      //   MediaQuery.of(context).size.width,
+      //   MediaQuery.sizeOf(context).height,
+      // ),
+      designSize: Size(375, 823), // iPhone X size example
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (_, child) {
@@ -37,6 +39,7 @@ class MyApp extends StatelessWidget {
             ChangeNotifierProvider(
               create: (context) => RemedyDetailsViewModel(),
             ),
+            ChangeNotifierProvider(create: (context) => MyClientViewModel()),
           ],
           child: GetMaterialApp(
             debugShowCheckedModeBanner: false,

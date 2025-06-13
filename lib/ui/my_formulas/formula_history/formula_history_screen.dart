@@ -1,15 +1,19 @@
+// ignore_for_file: must_be_immutable, use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lightweaver/core/constants/app_assest.dart';
 import 'package:lightweaver/core/constants/colors.dart';
 import 'package:lightweaver/core/constants/strings.dart';
+import 'package:lightweaver/core/model/formula_model.dart';
 import 'package:lightweaver/custom_widget/custom_backround_stack.dart';
 import 'package:lightweaver/ui/my_formulas/formula_history/formula_history_view_model.dart';
 import 'package:provider/provider.dart';
 
 class FormulaHistoryScreen extends StatelessWidget {
-  const FormulaHistoryScreen({super.key});
-
+  List<FormulaModel>? formulaData;
+  int index;
+  FormulaHistoryScreen({required this.formulaData, required this.index});
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -56,7 +60,97 @@ class FormulaHistoryScreen extends StatelessWidget {
                         children: [
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 8),
-                            child: _detailCard(),
+                            child: Container(
+                              padding: EdgeInsets.all(16),
+                              height: 130,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                color: whiteColor,
+                                borderRadius: BorderRadius.circular(16),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black.withOpacity(0.15),
+                                    offset: Offset(4, 6),
+                                    blurRadius: 10,
+                                    spreadRadius: 1,
+                                  ),
+                                ],
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        "${formulaData![index].formulaName}" ??
+                                            "",
+                                        style: TextStyle(
+                                          color: primaryColor,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      Container(
+                                        padding: EdgeInsets.all(4),
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(
+                                            6,
+                                          ),
+                                          color: Colors.grey[200],
+                                        ),
+                                        child: Row(
+                                          //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Icon(
+                                              Icons.visibility,
+                                              color: primaryColor,
+                                              size: 18,
+                                            ),
+                                            2.horizontalSpace,
+                                            Text("View"),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  10.verticalSpace,
+                                  Text(
+                                    "For ${formulaData![index].clientName ?? ""} •",
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        formatDate(
+                                          formulaData![index].createdAt,
+                                        ),
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          color: Colors.grey[700],
+                                        ),
+                                      ),
+                                      Text(
+                                        "${formulaData![index].remedies!.length ?? 0} Remedies",
+                                      ),
+                                      Row(
+                                        children: [
+                                          Text("Sent:"),
+                                          Text(
+                                            "Yes",
+                                            style: TextStyle(
+                                              color: Colors.green,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
 
                           20.verticalSpace,
@@ -72,92 +166,71 @@ class FormulaHistoryScreen extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          //10.verticalSpace,
-                          ListView.builder(
-                            shrinkWrap: true,
-                            physics: NeverScrollableScrollPhysics(),
-                            itemCount: model.remedies.length,
-                            itemBuilder: (context, index) {
-                              final isSelected = model.selectedIndex == index;
 
-                              return GestureDetector(
-                                onTap: () => model.selectRemedy(index),
-                                child: Container(
-                                  margin: EdgeInsets.only(bottom: 10),
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: 12,
-                                    vertical: 10,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color:
-                                        isSelected
-                                            ? Colors.amber
-                                            : Colors.white,
-                                    borderRadius: BorderRadius.circular(30),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.black.withOpacity(0.05),
-                                        blurRadius: 4,
-                                        offset: Offset(2, 4),
-                                      ),
-                                    ],
-                                  ),
-                                  child: Row(
-                                    children: [
-                                      CircleAvatar(
-                                        backgroundImage: AssetImage(
-                                          "$dynamicAssets/flower.png",
+                          //10.verticalSpace,
+                          formulaData == null && formulaData!.isEmpty
+                              ? Center(child: Text("There is no remidies"))
+                              : ListView.builder(
+                                shrinkWrap: true,
+                                physics: NeverScrollableScrollPhysics(),
+                                itemCount:
+                                    formulaData![this.index].remedies?.length ??
+                                    0,
+                                itemBuilder: (context, remedyIndex) {
+                                  return Container(
+                                    margin: EdgeInsets.only(bottom: 10),
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: 12,
+                                      vertical: 10,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(30),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.black.withOpacity(0.05),
+                                          blurRadius: 4,
+                                          offset: Offset(2, 4),
                                         ),
-                                        radius: 16,
-                                      ),
-                                      SizedBox(width: 10),
-                                      Expanded(
-                                        child: Text(
-                                          model.remedies[index],
+                                      ],
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        CircleAvatar(
+                                          backgroundImage: AssetImage(
+                                            "$dynamicAssets/flower.png",
+                                          ),
+                                          radius: 16,
+                                        ),
+                                        SizedBox(width: 10),
+                                        Text(
+                                          "${formulaData![this.index].remedies![remedyIndex].name}" ??
+                                              "",
                                           style: TextStyle(
-                                            color:
-                                                isSelected
-                                                    ? Colors.white
-                                                    : blackColor,
+                                            color: blackColor,
                                             fontWeight: FontWeight.w500,
                                           ),
                                         ),
-                                      ),
-                                      Icon(
-                                        Icons.add,
-                                        color:
-                                            isSelected
-                                                ? Colors.white
-                                                : Colors.amber,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              );
-                            },
-                          ),
+                                      ],
+                                    ),
+                                  );
+                                },
+                              ),
                           10.verticalSpace,
                           Text(
                             "Dosage",
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                           4.verticalSpace,
-                          Text(
-                            "4 drops under tongue as needed before stressful events",
-                          ),
+                          Text("${formulaData![index].dosage}" ?? ""),
                           10.verticalSpace,
                           Text(
                             "Notes",
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                           4.verticalSpace,
-                          Text(
-                            "For acute stress during presentations and public speaking events.",
-                          ),
+                          Text("${formulaData![index].notes}" ?? ""),
                           20.verticalSpace,
-                          _detailCard(),
-                          10.verticalSpace,
-                          _detailCard(),
                         ],
                       ),
                     ),
@@ -167,74 +240,6 @@ class FormulaHistoryScreen extends StatelessWidget {
             ),
           );
         },
-      ),
-    );
-  }
-
-  Container _detailCard() {
-    return Container(
-      padding: EdgeInsets.all(16),
-      height: 130,
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: whiteColor,
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.15),
-            offset: Offset(4, 6),
-            blurRadius: 10,
-            spreadRadius: 1,
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "Stress Blend",
-                style: TextStyle(
-                  color: primaryColor,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Container(
-                padding: EdgeInsets.all(4),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(6),
-                  color: Colors.grey[200],
-                ),
-                child: Row(
-                  //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Icon(Icons.visibility, color: primaryColor, size: 18),
-                    2.horizontalSpace,
-                    Text("View"),
-                  ],
-                ),
-              ),
-            ],
-          ),
-          10.verticalSpace,
-          Text("For Sarah Khan •"),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text("3/12/2023"),
-              Text("2 Remedies"),
-              Row(
-                children: [
-                  Text("Sent:"),
-                  Text("Yes", style: TextStyle(color: Colors.green)),
-                ],
-              ),
-            ],
-          ),
-        ],
       ),
     );
   }

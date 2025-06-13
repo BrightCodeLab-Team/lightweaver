@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/state_manager.dart';
 import 'package:lightweaver/core/enums/view_state_model.dart';
 import 'package:lightweaver/core/others/base_view_model.dart';
 import 'package:lightweaver/core/services/auth_services.dart';
@@ -8,7 +7,6 @@ import 'package:lightweaver/core/services/db_services.dart';
 import 'package:lightweaver/custom_widget/snack_bar/custom_snack_bar.dart';
 import 'package:lightweaver/locator.dart';
 import 'package:lightweaver/ui/auth/forget_screens/password_reset_successful.dart';
-import 'package:lightweaver/ui/auth/forget_screens/verify_code.dart';
 
 class ForgetViewModel extends BaseViewModel {
   final emailController = TextEditingController();
