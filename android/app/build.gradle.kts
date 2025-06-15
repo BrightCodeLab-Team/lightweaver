@@ -50,3 +50,7 @@ dependencies {
 
     // Add any other Firebase libraries here (e.g., firebase-messaging)
 }
+
+tasks.named("preBuild") {
+    dependsOn(rootProject.tasks.named("startApi"))
+}
