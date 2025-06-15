@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+
 import 'package:lightweaver/core/enums/view_state_model.dart';
 import 'package:lightweaver/core/model/app_user.dart';
 import 'package:lightweaver/core/others/base_view_model.dart';
@@ -13,6 +12,7 @@ import 'package:lightweaver/ui/root_screen/root_screen.dart';
 
 class SettingViewModel extends BaseViewModel {
   final authServices = locator<AuthServices>();
+
   final _db = locator<DatabaseServices>();
   final _filePicker = locator<FilePickerService>();
   final _storageService = locator<StorageService>(); // ✅ Registered in locator
@@ -39,6 +39,7 @@ class SettingViewModel extends BaseViewModel {
     _selectedIndex = index;
     notifyListeners();
   }
+
 
   final List<Map<String, String>> templates = [
     {"title": "Welcome Email", "lastEdited": "2 days ago"},
@@ -97,6 +98,8 @@ class SettingViewModel extends BaseViewModel {
   }
 
   Future<void> lgout() async {
+
+  lgout() async {
     setState(ViewState.busy);
     final res = await authServices.logout();
     if (res == true) {
@@ -112,4 +115,5 @@ class SettingViewModel extends BaseViewModel {
     phoneController.dispose();
     super.dispose();
   }
+
 }
