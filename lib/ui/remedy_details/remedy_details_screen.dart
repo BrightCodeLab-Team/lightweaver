@@ -100,6 +100,8 @@ class RemedyDetailsScreen extends StatelessWidget {
                             onChanged: (value) {
                               model.searchRemediesByName(value);
                             },
+
+                            ///
                             decoration: authFieldDecoration.copyWith(
                               contentPadding: EdgeInsets.symmetric(
                                 horizontal: 20,
