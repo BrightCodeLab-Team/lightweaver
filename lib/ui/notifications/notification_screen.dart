@@ -1,3 +1,5 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
 import 'package:lightweaver/core/constants/app_assest.dart';
 import 'package:lightweaver/core/constants/colors.dart';
@@ -7,17 +9,21 @@ import 'package:lightweaver/ui/notifications/notification_view_model.dart';
 import 'package:provider/provider.dart';
 
 class NotificationScreen extends StatelessWidget {
-  const NotificationScreen({super.key});
+  final String? notificationType;
+
+  const NotificationScreen({Key? key, this.notificationType}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => NotificationViewModel(),
+      create:
+          (context) =>
+              NotificationViewModel()..loadNotifications(notificationType!),
       child: Consumer<NotificationViewModel>(
         builder:
             (context, model, child) => Scaffold(
               backgroundColor: whiteColor,
-              body: SingleChildScrollView(
+              body: SafeArea(
                 child: Column(
                   children: [
                     Stack(
@@ -25,7 +31,6 @@ class NotificationScreen extends StatelessWidget {
                       clipBehavior: Clip.none,
                       children: [
                         Image.asset(AppAssets().notificationScreen, scale: 4),
-
                         Positioned(
                           bottom: 50,
                           left: 10,
@@ -36,7 +41,6 @@ class NotificationScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-
                     Padding(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 16,
@@ -45,25 +49,41 @@ class NotificationScreen extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          Text(
-                            'Mark All as Read',
-                            style: style14B.copyWith(color: blueColor),
+                          GestureDetector(
+                            onTap: model.markAllAsRead,
+                            child: Text(
+                              'Mark All as Read',
+                              style: style14B.copyWith(color: blueColor),
+                            ),
                           ),
-                          SizedBox(width: 20),
-                          Text('Clear All', style: style14B),
+                          const SizedBox(width: 20),
+                          GestureDetector(
+                            onTap: model.clearAll,
+                            child: Text('Clear All', style: style14B),
+                          ),
                         ],
                       ),
                     ),
-                    ListView.builder(
-                      physics: NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      itemCount: model.notifications.length,
-                      itemBuilder: (context, index) {
-                        return NotificationCard(
-                          notification: model.notifications[index],
-                        );
-                      },
+                    Expanded(
+                      child:
+                          model.notifications.isEmpty
+                              ? Center(
+                                child: Text(
+                                  "No notifications yet",
+                                  style: style16,
+                                ),
+                              )
+                              : ListView.builder(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 16,
+                                ),
+                                itemCount: model.notifications.length,
+                                itemBuilder: (context, index) {
+                                  return NotificationCard(
+                                    notification: model.notifications[index],
+                                  );
+                                },
+                              ),
                     ),
                   ],
                 ),
@@ -89,7 +109,6 @@ class NotificationCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Icon(notification.icon, size: 28, color: notification.iconColor),
