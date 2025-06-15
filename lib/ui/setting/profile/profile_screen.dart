@@ -1,3 +1,4 @@
+
 // ignore_for_file: use_key_in_widget_constructors, deprecated_member_use
 
 import 'package:flutter/material.dart';
@@ -19,33 +20,31 @@ class ProfileScreen extends StatelessWidget {
       create: (context) => SettingViewModel(),
       child: Consumer<SettingViewModel>(
         builder:
-            (context, model, child) => ModalProgressHUD(
-              inAsyncCall: model.state == ViewState.busy,
-              child: Scaffold(
-                ///
-                /// Start Body
-                ///
-                body: SingleChildScrollView(
-                  child: SafeArea(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: blackColor.withOpacity(0.59),
-                      ),
-                      child: Stack(
-                        children: [
-                          Image.asset(AppAssets().setting2Screen),
-                          Positioned(
-                            top: 16,
-                            left: 16,
-                            child: GestureDetector(
-                              onTap: () {
-                                Get.back();
-                              },
-                              child: Icon(
-                                Icons.arrow_back,
-                                color: Colors.orange,
-                                size: 30,
-                              ),
+            (context, model, child) => Scaffold(
+              ///
+              /// Start Body
+              ///
+
+              body: SingleChildScrollView(
+                child: SafeArea(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: blackColor.withOpacity(0.59),
+                    ),
+                    child: Stack(
+                      children: [
+                        Image.asset(AppAssets().setting2Screen),
+                        Positioned(
+                          top: 16,
+                          left: 16,
+                          child: GestureDetector(
+                            onTap: () {
+                              Get.back();
+                            },
+                            child: Icon(
+                              Icons.arrow_back,
+                              color: Colors.orange,
+                              size: 30,
                             ),
                           ),
                           Positioned(
