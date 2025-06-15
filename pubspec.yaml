@@ -42,7 +42,7 @@ dependencies:
   confetti:
   path_provider:
   animated_text_kit: ^4.2.3
-  intl: ^0.19.0
+  # intl:
   smooth_page_indicator:
   pin_code_fields:
   country_picker:
@@ -53,8 +53,9 @@ dependencies:
   firebase_core: 
   firebase_auth:
   device_preview: ^1.2.0 
-  # flutter_local_notifications: 
+  flutter_local_notifications: 
   cloud_firestore: 
+  firebase_messaging:
   firebase_storage:
   shared_preferences: 
   google_sign_in:
@@ -65,6 +66,7 @@ dependencies:
   file_picker:
   logger:
   shimmer:
+  timezone:
 
 
 dev_dependencies:

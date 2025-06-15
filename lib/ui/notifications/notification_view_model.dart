@@ -1,26 +1,75 @@
 import 'package:flutter/material.dart';
 import 'package:lightweaver/core/model/notification.dart';
-import 'package:lightweaver/core/others/base_view_model.dart';
 
-class NotificationViewModel extends BaseViewModel {
-  final List<NotificationModel> notifications = [
-    NotificationModel(
-      icon: Icons.calendar_today,
-      iconColor: Colors.blue,
-      title: "New appointment with Sara Malik tomorrow at 3PM.",
-      time: "2 minutes ago",
-    ),
-    NotificationModel(
-      icon: Icons.local_shipping,
-      iconColor: Colors.green,
-      title: "Formula 'Immunity Boost' successfully sent to client.",
-      time: "1 hour ago",
-    ),
-    NotificationModel(
-      icon: Icons.settings,
-      iconColor: Colors.black87,
-      title: "App update available: Version 1.4 now supports dark mode.",
-      time: "2 hours ago",
-    ),
-  ];
+class NotificationViewModel extends ChangeNotifier {
+  List<NotificationModel> _notifications = [];
+
+  List<NotificationModel> get notifications => _notifications;
+
+  /// Load notifications based on type
+  void loadNotifications(String notificationType) {
+    if (notificationType == 'admin') {
+      _notifications = [
+        NotificationModel(
+          title: 'Admin Alert',
+          content: 'System maintenance scheduled.',
+          time: '2 mins ago',
+          notificationType: 'admin',
+        ),
+        NotificationModel(
+          title: 'Admin Message',
+          content: 'Please verify your profile.',
+          time: '10 mins ago',
+          notificationType: 'admin',
+        ),
+      ];
+    } else if (notificationType == 'user') {
+      _notifications = [
+        NotificationModel(
+          title: 'New Message',
+          content: 'You received a new message.',
+          time: '5 mins ago',
+          notificationType: 'user',
+        ),
+        NotificationModel(
+          title: 'Account Update',
+          content: 'Your account settings were updated.',
+          time: '12 mins ago',
+          notificationType: 'user',
+        ),
+      ];
+    } else if (notificationType == 'offer') {
+      _notifications = [
+        NotificationModel(
+          title: 'Special Offer!',
+          content: 'Get 30% off on your next purchase.',
+          time: '15 mins ago',
+          notificationType: 'offer',
+        ),
+      ];
+    } else {
+      _notifications = [
+        NotificationModel(
+          title: 'Welcome!',
+          content: 'Thanks for joining us!',
+          time: 'Just now',
+          notificationType: 'general',
+        ),
+      ];
+    }
+
+    notifyListeners();
+  }
+
+  /// Mark all as read (if needed in future)
+  void markAllAsRead() {
+    // Future: Add read-flag if necessary
+    notifyListeners();
+  }
+
+  /// Clear all notifications
+  void clearAll() {
+    _notifications.clear();
+    notifyListeners();
+  }
 }

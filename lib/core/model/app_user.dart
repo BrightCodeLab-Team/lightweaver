@@ -5,6 +5,8 @@ class AppUser {
   String? password;
   String? practitionerType;
   String? country;
+  String? phoneNumber;
+  String? profileImage;
 
   AppUser({
     this.id,
@@ -13,6 +15,8 @@ class AppUser {
     this.password,
     this.practitionerType,
     this.country,
+    this.phoneNumber,
+    this.profileImage,
   });
 
   factory AppUser.fromJson(Map<String, dynamic> json) {
@@ -23,6 +27,8 @@ class AppUser {
       password: json['password'],
       practitionerType: json['practitionerType'],
       country: json['country'],
+      phoneNumber: json['phoneNumber'],
+      profileImage: json['profileImage'],
     );
   }
 
@@ -34,6 +40,8 @@ class AppUser {
       'password': password,
       'practitionerType': practitionerType,
       'country': country,
+      'phoneNumber': phoneNumber,
+      'profileImage': profileImage,
     };
   }
 }

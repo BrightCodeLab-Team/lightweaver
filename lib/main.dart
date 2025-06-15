@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lightweaver/core/constants/colors.dart';
+import 'package:lightweaver/core/services/notification_services.dart';
 import 'package:lightweaver/firebase_option.dart';
 import 'package:lightweaver/locator.dart';
 import 'package:lightweaver/ui/my_client/my_client_view_model.dart';
@@ -16,7 +17,8 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await setupLocator();
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-
+  // ✅ Initialize Firebase Notifications
+  NotificationsService().initConfigure();
   runApp(const MyApp());
 }
 
