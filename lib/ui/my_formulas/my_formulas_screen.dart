@@ -250,7 +250,13 @@ class MyFormulasScreen extends StatelessWidget {
             5.verticalSpace,
             CustomButton(
               text: "Send to Client",
-              onTap: () {},
+              onTap: () async {
+                await model.sendEmailUsingEmailJS(
+                  name: 'Awais khan',
+                  email: '${model.selectedClient!.email}',
+                  message: 'Here is your custom formula...',
+                );
+              },
               isWigetEnable: true,
               icon: Icons.send,
             ),

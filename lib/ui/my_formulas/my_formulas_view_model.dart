@@ -9,6 +9,8 @@ import 'package:lightweaver/core/services/db_services.dart';
 import 'package:lightweaver/custom_widget/snack_bar/custom_snack_bar.dart';
 import 'package:lightweaver/locator.dart';
 import 'package:lightweaver/ui/my_formulas/myformula_detail/my_formula_details_screen.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class MyFormulasViewModel extends BaseViewModel {
   final _db = locator<DatabaseServices>();
@@ -165,4 +167,81 @@ class MyFormulasViewModel extends BaseViewModel {
       print("Error fetching clients: $e");
     }
   }
+
+  Future<void> sendEmailUsingEmailJS({
+    required String name,
+    required String email,
+    required String message,
+  }) async {
+    const serviceId = 'service_prr6anp';
+    const templateId = 'template_e7e9aud'; // Replace with your template ID
+    const userId = 'bEn5MsbL6D3Fzte-F'; // Replace with your EmailJS Public Key
+
+    final url = Uri.parse('https://api.emailjs.com/api/v1.0/email/send');
+
+    final response = await http.post(
+      url,
+      headers: {
+        'origin': 'http://localhost',
+        'Content-Type': 'application/json',
+      },
+      body: json.encode({
+        'service_id': serviceId,
+        'template_id': templateId,
+        'user_id': userId,
+        'template_params': {
+          'user_name': name,
+          'user_email': email,
+          'message': message,
+        },
+      }),
+    );
+
+    if (response.statusCode == 200) {
+      print('✅ Email sent successfully');
+      customSnackbar(title: "Email Sent", message: "✅ Email sent successfully");
+    } else {
+      print('❌ Failed to send email: ${response.body}');
+    }
+  }
+
+  // Future<void> sendFormulaToClientViaEmail() async {
+  //   if (_selectedClient?.email == null || _selectedClient!.email!.isEmpty) {
+  //     customSnackbar(
+  //       title: "Missing Client",
+  //       message: "Please select a client with a valid email.",
+  //     );
+  //     return;
+  //   }
+
+  //   try {
+  //     final callable = FirebaseFunctions.instance.httpsCallable(
+  //       'sendFormulaEmail',
+  //     );
+  //     final result = await callable.call({
+  //       "clientEmail": _selectedClient!.email!,
+  //       "subject": "Your Custom Formula from Lightweaver",
+  //       "formulaName": formulaModel.formulaName ?? "",
+  //       "dosage": formulaModel.dosage ?? "",
+  //       "notes": formulaModel.notes ?? "",
+  //       "remedies":
+  //           selectedRemedies.map((e) => {"name": e.name ?? ""}).toList(),
+  //     });
+
+  //     if (result.data["success"] == true) {
+  //       customSnackbar(
+  //         title: "Email Sent",
+  //         message: "Formula sent to client successfully.",
+  //       );
+  //     } else {
+  //       customSnackbar(
+  //         title: "Failed to Send",
+  //         message: result.data["error"] ?? "Unknown error occurred",
+  //       );
+  //     }
+  //   } catch (e) {
+  //     customSnackbar(title: "Error", message: "Error while sending email: $e");
+  //     print("❌ sendFormulaToClientViaEmail error: $e");
+  //   }
+  // }
 }

@@ -272,7 +272,7 @@ class NewClientProfileScreen extends StatelessWidget {
                                   _buildField(
                                     text: "Date of Birth",
                                     initialValue:
-                                        model.clientProfile.date ?? "",
+                                        model.clientProfile.dateOfBirth ?? "",
                                     validator: (value) {
                                       if (value == null || value.isEmpty) {
                                         return 'Date of Birth is required';
@@ -288,7 +288,8 @@ class NewClientProfileScreen extends StatelessWidget {
 
                                     onChanged:
                                         (value) =>
-                                            model.clientProfile.date = value,
+                                            model.clientProfile.dateOfBirth =
+                                                value,
                                   ),
 
                                   const SizedBox(height: 20),
