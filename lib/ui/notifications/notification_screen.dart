@@ -1,4 +1,4 @@
-// ignore_for_file: use_key_in_widget_constructors
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors_in_immutables
 
 import 'package:flutter/material.dart';
 import 'package:lightweaver/core/constants/app_assest.dart';
@@ -11,14 +11,16 @@ import 'package:provider/provider.dart';
 class NotificationScreen extends StatelessWidget {
   final String? notificationType;
 
-  const NotificationScreen({Key? key, this.notificationType}) : super(key: key);
+  NotificationScreen({this.notificationType});
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create:
-          (context) =>
-              NotificationViewModel()..loadNotifications(notificationType!),
+      create: (context) {
+        final type =
+            notificationType ?? 'default'; // or any valid fallback type
+        return NotificationViewModel()..loadNotifications(type);
+      },
       child: Consumer<NotificationViewModel>(
         builder:
             (context, model, child) => Scaffold(
@@ -41,50 +43,21 @@ class NotificationScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 10,
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          GestureDetector(
-                            onTap: model.markAllAsRead,
-                            child: Text(
-                              'Mark All as Read',
-                              style: style14B.copyWith(color: blueColor),
-                            ),
+                    model.notifications.isEmpty && model.notifications == null
+                        ? Center(
+                          child: Text("No notifications yet", style: style16),
+                        )
+                        : Expanded(
+                          child: ListView.builder(
+                            padding: const EdgeInsets.symmetric(horizontal: 16),
+                            itemCount: model.notifications.length,
+                            itemBuilder: (context, index) {
+                              return NotificationCard(
+                                notification: model.notifications[index],
+                              );
+                            },
                           ),
-                          const SizedBox(width: 20),
-                          GestureDetector(
-                            onTap: model.clearAll,
-                            child: Text('Clear All', style: style14B),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                      child:
-                          model.notifications.isEmpty
-                              ? Center(
-                                child: Text(
-                                  "No notifications yet",
-                                  style: style16,
-                                ),
-                              )
-                              : ListView.builder(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 16,
-                                ),
-                                itemCount: model.notifications.length,
-                                itemBuilder: (context, index) {
-                                  return NotificationCard(
-                                    notification: model.notifications[index],
-                                  );
-                                },
-                              ),
-                    ),
+                        ),
                   ],
                 ),
               ),

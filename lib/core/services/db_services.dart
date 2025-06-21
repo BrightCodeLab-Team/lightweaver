@@ -213,13 +213,15 @@ class DatabaseServices {
 
   addClientProfile(ClientProfile profile) async {
     try {
-      await _db
-          .collection('client_profiles')
-          .add(profile.toJson())
-          .then((value) => debugPrint('client_profiles successfully added'));
+      // Add document and wait for the ref with generated ID
+      final ref = _db.collection('client_profiles').doc(); // generates an ID
+      profile.id = ref.id; // assign it early
+      await ref.set(profile.toJson()); // create the document with that ID
+
+      debugPrint('Client profile added with ID: ${ref.id},${profile.id}');
       return true;
     } catch (e, s) {
-      debugPrint('Exception @DatabaseService/contact_us');
+      debugPrint('Exception @DatabaseService/addClientProfile');
       debugPrint(s.toString());
       return false;
     }

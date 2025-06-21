@@ -1,3 +1,5 @@
+// ignore_for_file: use_function_type_syntax_for_parameters
+
 import 'dart:io';
 import 'package:get/get.dart';
 import 'package:lightweaver/core/enums/view_state_model.dart';
@@ -11,7 +13,7 @@ import 'package:lightweaver/ui/root_screen/root_screen.dart';
 
 class MyClientViewModel extends BaseViewModel {
   String selectedAgeGroup = 'Age Group';
-  String selectedVisit = 'Last Visit';
+  String selectedVisit = 'Newest First';
 
   final _dbServices = locator<DatabaseServices>();
 
@@ -33,6 +35,7 @@ class MyClientViewModel extends BaseViewModel {
 
   addClient() async {
     setState(ViewState.busy);
+
     final response = await _dbServices.addClientProfile(clientProfile);
     if (response != null) {
       customSnackbar(
@@ -72,10 +75,27 @@ class MyClientViewModel extends BaseViewModel {
     '46+',
   ];
   final List<String> visitFilters = [
-    'Last Visit',
     'Newest First',
+    'Last Visit',
     'Oldest First',
   ];
+
+  // List<ClientProfile> get filteredClienData {
+  //   final list = List<ClientProfile>.from(clientData!);
+  //   switch (selectedVisit) {
+  //     case 'Newest First':
+  //       list.sort((a, b) => b.createdAt!.compareTo(a.date!));
+  //       break;
+  //     case 'Oldest First':
+  //       list.sort((a, b) => a.date!.compareTo(b.date!));
+  //       break;
+  //     case 'Last Visit':
+  //     default:
+  //       // Optionally keep original or sort by most recent visit logic
+  //       break;
+  //   }
+  //   return list;
+  // }
 
   List<ClientProfile> get filteredClientData {
     List<ClientProfile> filtered = clientData ?? [];
@@ -108,51 +128,21 @@ class MyClientViewModel extends BaseViewModel {
       }
     }
 
-    // Visit Filter
-
-    if (selectedVisit == 'Newest First') {
-      filtered.sort((a, b) {
-        try {
-          return DateTime.parse(
-            b.date ?? '',
-          ).compareTo(DateTime.parse(a.date ?? ''));
-        } catch (e) {
-          return 0; // Skip sorting if date is invalid
-        }
-      });
-    } else if (selectedVisit == 'Oldest First') {
-      filtered.sort((a, b) {
-        try {
-          return DateTime.parse(
-            a.date ?? '',
-          ).compareTo(DateTime.parse(b.date ?? ''));
-        } catch (e) {
-          return 0;
-        }
-      });
-    }
+    // 2. Apply Visit Sorting
+    filtered.sort((a, b) {
+      final da = a.createdAt ?? DateTime.fromMillisecondsSinceEpoch(0);
+      final db = b.createdAt ?? DateTime.fromMillisecondsSinceEpoch(0);
+      switch (selectedVisit) {
+        case 'Newest First':
+          return db.compareTo(da);
+        case 'Oldest First':
+          return da.compareTo(db);
+        case 'Last Visit':
+        default:
+          return 0; // no sorting
+      }
+    });
 
     return filtered;
   }
-
-  // final List<Map<String, dynamic>> clients = [
-  //   {
-  //     "name": "Ayesha Khan",
-  //     "age": 32,
-  //     "gender": "Female",
-  //     "lastSession": "3 Apr 2025",
-  //   },
-  //   {
-  //     "name": "Ayesha Khan",
-  //     "age": 32,
-  //     "gender": "Female",
-  //     "lastSession": "3 Apr 2025",
-  //   },
-  //   {
-  //     "name": "Ayesha Khan",
-  //     "age": 32,
-  //     "gender": "Female",
-  //     "lastSession": "3 Apr 2025",
-  //   },
-  // ];
 }
