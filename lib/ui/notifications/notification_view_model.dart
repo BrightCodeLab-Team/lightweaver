@@ -61,11 +61,11 @@ class NotificationViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// Mark all as read (if needed in future)
-  void markAllAsRead() {
-    // Future: Add read-flag if necessary
-    notifyListeners();
-  }
+  // /// Mark all as read (if needed in future)
+  // void markAllAsRead() {
+  //   // Future: Add read-flag if necessary
+  //   notifyListeners();
+  // }
 
   /// Clear all notifications
   void clearAll() {

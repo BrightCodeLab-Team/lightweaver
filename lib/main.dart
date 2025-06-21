@@ -9,6 +9,7 @@ import 'package:lightweaver/firebase_option.dart';
 import 'package:lightweaver/locator.dart';
 import 'package:lightweaver/ui/my_client/my_client_view_model.dart';
 import 'package:lightweaver/ui/remedy_details/remedy_details_view_model.dart';
+import 'package:lightweaver/ui/setting/appearance/apperance_view_model.dart';
 import 'package:lightweaver/ui/splash_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -17,9 +18,14 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await setupLocator();
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-  // ✅ Initialize Firebase Notifications
   NotificationsService().initConfigure();
-  runApp(const MyApp());
+
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => ApperanceViewModel(), // Handles theme loading
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -28,36 +34,27 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      // designSize: Size(
-      //   MediaQuery.of(context).size.width,
-      //   MediaQuery.sizeOf(context).height,
-      // ),
-      designSize: Size(375, 823), // iPhone X size example
+      designSize: const Size(375, 823),
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (_, child) {
         return MultiProvider(
           providers: [
-            ChangeNotifierProvider(
-              create: (context) => RemedyDetailsViewModel(),
-            ),
-            ChangeNotifierProvider(create: (context) => MyClientViewModel()),
+            ChangeNotifierProvider(create: (_) => RemedyDetailsViewModel()),
+            ChangeNotifierProvider(create: (_) => MyClientViewModel()),
           ],
-          child: GetMaterialApp(
-            debugShowCheckedModeBanner: false,
-            defaultTransition: Transition.rightToLeft,
-            title: 'LightWeaver',
-            theme: ThemeData(
-              appBarTheme: AppBarTheme(
-                backgroundColor: backGroundColor,
-                shadowColor: transparentColor,
-                surfaceTintColor: transparentColor,
-              ),
-              scaffoldBackgroundColor: backGroundColor,
-              colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
-              useMaterial3: true,
-            ),
-            home: SplashScreen(),
+          child: Consumer<ApperanceViewModel>(
+            builder: (context, viewModel, _) {
+              return GetMaterialApp(
+                debugShowCheckedModeBanner: false,
+                defaultTransition: Transition.rightToLeft,
+                title: 'LightWeaver',
+                theme: lightTheme,
+                darkTheme: darkTheme,
+                themeMode: viewModel.themeMode, // Dynamic theme mode
+                home: SplashScreen(),
+              );
+            },
           ),
         );
       },
